@@ -1,6 +1,15 @@
+/**
+ * ErstesFahren
+ */
 package mindstorms;
-import ch.aplu.ev3.*;
 
+import ch.aplu.ev3.Gear;
+import ch.aplu.ev3.LegoRobot;
+
+/**
+ * @author stuewe.oskar
+ *
+ */
 public class ErstesFahren
 {
   public ErstesFahren()
