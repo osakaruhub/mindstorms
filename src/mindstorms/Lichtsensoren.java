@@ -2,38 +2,39 @@ package mindstorms;
 import ch.aplu.ev3.*;
 
 public class Lichtsensoren {
-	private final int drehen = 1500;
+	private final int drehen = 1250;
 	static Boolean stop = false;
-	int level = 20;
+	int level = 100;
 	LegoRobot robot;
 	Gear gear;
+	LightSensor ls;
 
   public Lichtsensoren() {
     robot = new LegoRobot();
     gear = new Gear();
     robot.addPart(gear);
-    LightSensor ls = new LightSensor();
+    ls = new LightSensor();
     robot.addPart(ls);
+    ls.activate(true);
     bw();
-    countStripes();
-    followLine();
+    robot.playTone(500, 1000);
     robot.exit();
   }
 
   public void bw() {
+	  ls.addLightListener(new bwLightListener(), level);
 	  gear.forward();
-    for (int i = 0;!robot.isEscapeHit() || stop ; i++) {
-      if (ls.getValue() > trigger) {
-      }
+    while (!robot.isEscapeHit() || stop) {
+    	robot.drawString(ls.getValue() + "", 1, 1);
     }
     gear.stop();
   }
 
-  public class bwLightListener implements LightListener {
+  class bwLightListener implements LightListener {
         int count;
 
-        public void bright() {}
-        public void dark() {
+        public void dark(SensorPort port, int level) {}
+        public void bright(SensorPort port, int level) {
             if (count >= 5) {
                 stop = true;
             } else {
@@ -46,19 +47,19 @@ public class Lichtsensoren {
     }
 
   public void countStripes() {
-    static Boolean stop = false; 
-    static int i = 0;
-    ls.addLightListener.(new CountStripesLightListener(), level);
+    ls.addLightListener(new CountStripesLightListener(), level);
     gear.forward();
     while (!robot.isEscapeHit()) {}
     gear.stop();
   }
 
   class CountStripesLightListener implements LightListener {
-    public void bright(SensorPort port, int level) {}
-    public void dark(SensorPort port, int level) {
-      Lichtsensoren.i++;
-      System.out.println(i);
+	int count = 0;
+    public void dark(SensorPort port, int level) {}
+    public void bright(SensorPort port, int level) {
+    	robot.playTone(600, 300);
+    	count++;
+    	System.out.println(count);
         try {
             Thread.sleep(100); // Sleep to prevent busy waiting
         } catch (InterruptedException ex) {
@@ -92,5 +93,8 @@ public class Lichtsensoren {
   //  public LeftLightListener(){
   //
   //  }
+  }
+  public static void main(String[] args) {
+	  new Lichtsensoren();
   }
 }

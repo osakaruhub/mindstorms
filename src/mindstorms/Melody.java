@@ -1,13 +1,13 @@
 package mindstorms;
 
-import ch.aplu.ev3.Gear;
-
-import ch.aplu.ev3.*;
+import java.util.LinkedHashMap;
+import ch.aplu.ev3.*;
 /**
  * Melody
  */
 public class Melody {
 	LegoRobot robot;
+	int duration = 300;
     enum Note {
         C(261),
         D(293),
@@ -24,14 +24,35 @@ public class Melody {
             this.freq = freq;
         }
     }
-
-    final int[12] littleRoot = {Note.C.freq, Note.F.freq, Note.G.freq, Note.Ab.freq, Note.A.freq, Note.C.freq, Note.F.freq, Note.G.freq, Note.Ab.freq, Note.C.freq, Note.F.freq, Note.G.freq}
-    final int[7] simple = {Note.C.freq, Note.D.freq, Note.E.freq, Note.C.freq, Note.E.freq, Note.D.freq, Note.C.freq}
+    static final LinkedHashMap<String,int[]> songs;
+    static {
+    	songs = new LinkedHashMap<>();
+    	songs.put("littleroot", new int[] {Note.C.freq, Note.F.freq, Note.G.freq, Note.Ab.freq, Note.A.freq, Note.C.freq, Note.F.freq, Note.G.freq, Note.Ab.freq, Note.C.freq, Note.F.freq, Note.G.freq});
+    	songs.put("simple", new int[] {Note.C.freq, Note.D.freq, Note.E.freq, Note.C.freq, Note.E.freq, Note.D.freq, Note.C.freq});
+    }
+    String[] titles = {"littleroot", "simple"};
 
     public Melody() {
         robot = new LegoRobot();
+        int i = 0;
+        for (String title: songs.keySet()) {
+        	robot.drawString(title, 3, i);
+        	i++;
+        }
+        int selected = 0;
+        do {
+        Tools.waitButton();
+        robot.drawString(" ", 1, selected + 1);
+        if (robot.isDownHit()) {
+        	selected++;
+        	robot.drawString("X", 1, selected + 1);
 
-        for (int freq : simple) {
+        } else if (robot.isUpHit()) {
+        	selected--;
+        	robot.drawString("X", 1, selected + 1);
+        }
+        } while(!robot.isEnterHit());
+        for (int freq : songs.get(titles[selected])) {
             robot.playTone(freq, duration);
             try {
                 Thread.sleep(100); // Short pause between notes
@@ -39,6 +60,7 @@ public class Melody {
                 e.printStackTrace();
             }
         }
+        robot.exit();
     }
     public static void main(String[] args) {
         new Melody();
