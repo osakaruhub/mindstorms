@@ -2,23 +2,26 @@ package mindstorms;
 import ch.aplu.ev3.*;
 
 public class Lichtsensoren {
-  private final int drehen = 1500;
-  static Boolean stop = false;
+	private final int drehen = 1500;
+	static Boolean stop = false;
+	int level = 20;
+	LegoRobot robot;
+	Gear gear;
 
   public Lichtsensoren() {
-    LegoRobot robot = new LegoRobot();
-    Gear gear = new Gear();
+    robot = new LegoRobot();
+    gear = new Gear();
     robot.addPart(gear);
     LightSensor ls = new LightSensor();
     robot.addPart(ls);
     bw();
     countStripes();
     followLine();
-    robot.close();
+    robot.exit();
   }
 
   public void bw() {
-    gear.forward();
+	  gear.forward();
     for (int i = 0;!robot.isEscapeHit() || stop ; i++) {
       if (ls.getValue() > trigger) {
       }
@@ -26,13 +29,13 @@ public class Lichtsensoren {
     gear.stop();
   }
 
-  public bwLightListener implements LightListener {
+  public class bwLightListener implements LightListener {
         int count;
 
         public void bright() {}
         public void dark() {
             if (count >= 5) {
-                Lichtsensor.stop = true
+                stop = true;
             } else {
                 gear.stop();
                 gear.left(drehen);
@@ -45,15 +48,15 @@ public class Lichtsensoren {
   public void countStripes() {
     static Boolean stop = false; 
     static int i = 0;
-    ls.addLightListener.(new CountStripesLichtListener());
+    ls.addLightListener.(new CountStripesLightListener(), level);
     gear.forward();
     while (!robot.isEscapeHit()) {}
     gear.stop();
   }
 
-  class CountStripesLichtListener implements LightListener {
-    public void bright() {}
-    public void dark() {
+  class CountStripesLightListener implements LightListener {
+    public void bright(SensorPort port, int level) {}
+    public void dark(SensorPort port, int level) {
       Lichtsensoren.i++;
       System.out.println(i);
         try {
@@ -65,7 +68,7 @@ public class Lichtsensoren {
   }
 
   //STUB
-  //public void followLine() {
+  public void followLine() {
   //  while (!robot.isEscapeHit()) {
   //  }
   //}
@@ -89,5 +92,5 @@ public class Lichtsensoren {
   //  public LeftLightListener(){
   //
   //  }
-  //}
+  }
 }

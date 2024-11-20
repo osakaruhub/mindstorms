@@ -1,9 +1,13 @@
 package mindstorms;
+
+import ch.aplu.ev3.Gear;
+
 import ch.aplu.ev3.*;
 /**
  * Melody
  */
 public class Melody {
+	LegoRobot robot;
     enum Note {
         C(261),
         D(293),
@@ -14,7 +18,7 @@ public class Melody {
         A(440),
         B(493);
 
-        private int freq;
+        int freq;
 
         Note(int freq) {
             this.freq = freq;
@@ -25,7 +29,7 @@ public class Melody {
     final int[7] simple = {Note.C.freq, Note.D.freq, Note.E.freq, Note.C.freq, Note.E.freq, Note.D.freq, Note.C.freq}
 
     public Melody() {
-        LegoRobot robot = new LegoRobot();
+        robot = new LegoRobot();
 
         for (int freq : simple) {
             robot.playTone(freq, duration);

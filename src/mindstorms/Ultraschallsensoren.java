@@ -5,12 +5,14 @@ import ch.aplu.ev3.*;
  * Ultraschallsensoren
  */
 public class Ultraschallsensoren {
-    public DruckSensoren() {
+	LegoRobot robot;
+	Gear gear;
+    public Ultraschallsensoren() {
         final int drehen = 1500;
         final int trigger = 20;
 
-        LegoRobot robot = new LegoRobot();
-        Gear gear = new Gear();
+        robot = new LegoRobot();
+        gear = new Gear();
         robot.addPart(gear);
         UltraschallSensor us = new UltraschallSensor();
         robot.addPart(us);
@@ -19,7 +21,7 @@ public class Ultraschallsensoren {
     }
 
     public void lawnmower() {
-        us.addUltraSchallsensor(new UltrasonicLawnmowerListener(), trigger)
+        us.addUltraSchallsensor(new UltrasonicLawnmowerListener(), level)
         forward();
         while (!robot.isEscapeHit()) {}
         gear.stop();
@@ -29,7 +31,8 @@ public class Ultraschallsensoren {
         //TODO: stud
     }
 
-    public class UltrasonicLawnmowerListener() {
+    public class UltrasonicLawnmowerListener implements UltrasonicListener {
+    	int turns = 0;
         public void far(SensorPort port, int level) {
             gear.forward();
         }
@@ -37,14 +40,15 @@ public class Ultraschallsensoren {
         public void near(SensorPort port, int level) {
             gear.stop();
             if (turns % 2 == 1) {
-                gear.rightArc();
+                gear.rightArc(0.2, 2000);
             } else {
-                gear.leftArc();
+                gear.leftArc(0.2, 2000);
             }
+            turns++;
         }
     }
 
-    public class UltrasonicParcourListener {
+    public class UltrasonicParcourListener implements UltrasonicListener {
         public void far(SensorPort port, int level) {
             gear.forward();
         }
