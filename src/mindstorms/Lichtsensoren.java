@@ -2,6 +2,7 @@ package mindstorms;
 
 import ch.aplu.ev3.Gear;
 import ch.aplu.ev3.LegoRobot;
+import ch.aplu.ev3.SensorPort;
 import ch.aplu.ev3.LightSensor;
 import ch.aplu.ev3.LightListener;
 
@@ -17,31 +18,19 @@ import ch.aplu.ev3.LightListener;
 public class Lichtsensoren {
     private final int drehen = 1250;
     static Boolean stop = false;
-    int level = 100;
+    int level = 200;
     LegoRobot robot;
     Gear gear;
     LightSensor ls;
 
-    public Lichtsensoren(int arg) {
+    public Lichtsensoren() {
         robot = new LegoRobot();
         gear = new Gear();
         robot.addPart(gear);
         ls = new LightSensor();
         robot.addPart(ls);
         ls.activate(true);
-        switch (arg) {
-            case 1:
-            bw();
-                break;
-            case 2:
-            countStripes();
-                break;
-            case 3:
-            followLine();
-            default:
-            System.err.println(" argument: " + arg);
-                break;
-        }
+        circle();
         robot.exit();
     }
 
@@ -92,31 +81,26 @@ public class Lichtsensoren {
         }
     }
 
-    //TODO: stub
-    public void followLine() {
-        //while (!robot.isEscapeHit()) {
-        //}
-        //
-        //}
+    public void circle() {
+    	ls.addLightListener(new circleListener(), level);
+    	gear.forward();
+        while (!robot.isEscapeHit()) {
+        	robot.drawString(ls.getValue() +"", 1, 1);
+        };
+        gear.stop();
     }
 
-    //class LeftLightListener implements LightListener{
-    //    public void dark(SensorPort port, int level) {}
-    //    public void bright(Sensorport, int level) {}
-    //}
+    class circleListener implements LightListener{
+        public void dark(SensorPort port, int level) {
+        	gear.leftArcMilli(2000);
+        }
+        public void bright(SensorPort port, int level) {
+        	gear.leftArcMilli(3000);
+        }
+    }
 
 
     public static void main(String[] args) {
-        int arg;
-        if (args.length != 0) {
-            try {
-                arg = args[0].parseInt();
-            } catch (NumberFormatException e) {
-                System.err.println("not a valid argument: " + args[0]); System.exit(1);
-            }
-            new Lichtsensoren(arg);
-        } else {
-            System.err.println("no argument given");
-        }
-    }
+        new Lichtsensoren();
+}
 }

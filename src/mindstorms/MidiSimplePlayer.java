@@ -1,18 +1,18 @@
+package mindstorms;
 import javax.sound.midi.*;
-import javax.sound.sampled.*;
+
+import ch.aplu.ev3.LegoRobot;
+
 import java.io.File;
 
-public class MidiNoteExtractor {
+public class MidiSimplePlayer {
 
     private static float BPM = 120; // Beats per minute
     private static int PPQ = 480; // Pulses per quarter note (common value)
-    private static final float SAMPLE_RATE = 44100; // Sample rate in Hz
+    private static LegoRobot robot;
 
     public static void main(String[] args) {
-        if (args.length == 0) {
-            System.err.println("no argument given");
-            System.exit(1);
-        }
+        robot = new LegoRobot();
         try {
             Sequencer sequencer = MidiSystem.getSequencer();
             if (sequencer == null) {
@@ -21,7 +21,7 @@ public class MidiNoteExtractor {
             }
 
             sequencer.open();
-            Sequence sequence = MidiSystem.getSequence(new File(args[0]));
+            Sequence sequence = MidiSystem.getSequence(new File("elise.mid"));
             //BPM = getBPM(sequence);
             System.out.println(BPM);
             PPQ = sequence.getResolution();
@@ -39,6 +39,7 @@ public class MidiNoteExtractor {
             e.printStackTrace();
         }
     }
+    
 public static float getBPM(Sequence sequence) {
         for (Track track : sequence.getTracks()) {
             for (int i = 0; i < track.size(); i++) {
@@ -90,7 +91,7 @@ public static float getBPM(Sequence sequence) {
                         System.out.printf("Note OFF: %d at tick %d, Frequency: %.2f Hz, Duration: %.3f seconds%n",
                                           lastNote, event.getTick(), frequency, durationInSeconds);
                         // Play the frequency
-                        playFrequency(frequency, durationInSeconds);
+                        robot.playTone((int) frequency, (int) durationInSeconds);
                         lastNote = -1;  // Reset lastNote after processing
                     }
                 }
@@ -105,28 +106,6 @@ public static float getBPM(Sequence sequence) {
     private static double ticksToSeconds(long ticks) {
         double secondsPerBeat = 60.0 / BPM;
         return ticks * secondsPerBeat / PPQ;
-    }
-
-    private static void playFrequency(double frequency, double duration) {
-        int bufferSize = (int) (SAMPLE_RATE * duration);
-        byte[] buffer = new byte[bufferSize];
-
-        // Generate the sine wave
-        for (int i = 0; i < bufferSize; i++) {
-            buffer[i] = (byte) (Math.sin(2 * Math.PI * i / (SAMPLE_RATE / frequency)) * 127);
-        }
-
-        try {
-            AudioFormat format = new AudioFormat(SAMPLE_RATE, 8, 1, true, true);
-            SourceDataLine line = AudioSystem.getSourceDataLine(format);
-            line.open();
-            line.start();
-            line.write(buffer, 0, buffer.length);
-            line.drain();
-            line.close();
-        } catch (LineUnavailableException e) {
-            e.printStackTrace();
-        }
     }
 }
 

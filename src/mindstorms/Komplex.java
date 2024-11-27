@@ -3,7 +3,9 @@ package mindstorms;
 import ch.aplu.ev3.Motor;
 import ch.aplu.ev3.MotorPort;
 import ch.aplu.ev3.LegoRobot;
+import ch.aplu.ev3.LightListener;
 import ch.aplu.ev3.SensorPort;
+import ch.aplu.ev3.TouchListener;
 import ch.aplu.ev3.LightSensor;
 import ch.aplu.ev3.TouchSensor;
 
@@ -23,17 +25,18 @@ public class Komplex {
     public Komplex() {
         robot = new LegoRobot();
         // create 2 Motor Instances instead of Gear for handling both motors
-        leftMotor = new Motor(MotorPort.S1)
+        leftMotor = new Motor(MotorPort.A);
         robot.addPart(rightMotor);
-        rightMotor = new Motor(MotorPort.S2)
+        rightMotor = new Motor(MotorPort.B);
         robot.addPart(leftMotor);
         //create and add 2 LightSensor each with its own Listener
         rul = new LightSensor(SensorPort.S1);
-        rul.addLightListener(new rightListener(SensorPort.S1));
+        rul.addLightListener(new rightListener(), level);
         robot.addPart(rul);
         lul = new LightSensor(SensorPort.S2); 
-        lul.addLightListener(new rightListener(SensorPort.S2));
+        lul.addLightListener(new LeftListener(), level);
         robot.addPart(lul);
+        gear = 
 
         while (!robot.isEscapeHit() || touchCount < 5) {} // continue until 5 rounds have been done
         robot.exit();
@@ -42,7 +45,7 @@ public class Komplex {
     // two LightListener classes, it will  to the acording side, and 
     class rightListener implements LightListener {
         public void dark(SensorPort port, int level) {
-            leftMotor.foward();
+            leftMotor.forward();
         }
         public void bright(SensorPort port, int level) {
             leftMotor.stop();
@@ -50,7 +53,7 @@ public class Komplex {
     }
     class LeftListener implements LightListener {
         public void dark(SensorPort port, int level) {
-            rightMotor.foward();
+            rightMotor.forward();
         }
         public void bright(SensorPort port, int level) {
             rightMotor.stop();
