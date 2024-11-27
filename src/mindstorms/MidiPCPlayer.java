@@ -1,18 +1,18 @@
-package mindstorms;
 import javax.sound.midi.*;
-
-import ch.aplu.ev3.LegoRobot;
-
+import javax.sound.sampled.*;
 import java.io.File;
 
-public class MidiSimplePlayer {
+public class MidiEV3 {
 
     private static float BPM = 120; // Beats per minute
     private static int PPQ = 480; // Pulses per quarter note (common value)
-    private static LegoRobot robot;
+    private static final float SAMPLE_RATE = 44100; // Sample rate in Hz
 
     public static void main(String[] args) {
-        robot = new LegoRobot();
+        if (args.length == 0) {
+            System.err.println("no argument given");
+            System.exit(1);
+        }
         try {
             Sequencer sequencer = MidiSystem.getSequencer();
             if (sequencer == null) {
@@ -21,7 +21,7 @@ public class MidiSimplePlayer {
             }
 
             sequencer.open();
-            Sequence sequence = MidiSystem.getSequence(new File("elise.mid"));
+            Sequence sequence = MidiSystem.getSequence(new File(args[0]));
             //BPM = getBPM(sequence);
             System.out.println(BPM);
             PPQ = sequence.getResolution();
@@ -39,7 +39,6 @@ public class MidiSimplePlayer {
             e.printStackTrace();
         }
     }
-    
 public static float getBPM(Sequence sequence) {
         for (Track track : sequence.getTracks()) {
             for (int i = 0; i < track.size(); i++) {
@@ -91,7 +90,7 @@ public static float getBPM(Sequence sequence) {
                         System.out.printf("Note OFF: %d at tick %d, Frequency: %.2f Hz, Duration: %.3f seconds%n",
                                           lastNote, event.getTick(), frequency, durationInSeconds);
                         // Play the frequency
-                        robot.playTone((int) frequency, (int) durationInSeconds);
+			robot.playtune(frequency, duration);
                         lastNote = -1;  // Reset lastNote after processing
                     }
                 }
@@ -107,5 +106,6 @@ public static float getBPM(Sequence sequence) {
         double secondsPerBeat = 60.0 / BPM;
         return ticks * secondsPerBeat / PPQ;
     }
+
 }
 
