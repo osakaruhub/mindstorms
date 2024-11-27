@@ -1,6 +1,16 @@
 package mindstorms;
-import ch.aplu.ev3.*;
 
+import ch.aplu.ev3.LegoRobot;
+import ch.aplu.ev3.Gear;
+import ch.aplu.ev3.TouchSensor;
+import ch.aplu.ev3.TouchListener;
+
+/** 
+ *  
+ * arguments:
+ * 1 -> lawnmower()
+ * 2 -> maze()
+ */ 
 public class Drucksensoren {
 	LegoRobot robot;
 	Gear gear;
@@ -18,6 +28,7 @@ public class Drucksensoren {
         robot.exit();
     }
 
+    // 1.
     public void lawnmower() {
         while (!robot.isEscapeHit()) {
             gear.forward();
@@ -29,7 +40,7 @@ public class Drucksensoren {
         }
     }
     
-    public class LawnMowerListener implements LightListener {
+    public class LawnMowerListener implements TouchListener {
         int turns;
 
         public void bright(SensorPort port, int level) {}
@@ -45,8 +56,8 @@ public class Drucksensoren {
         }
     }
 
-    public void parcours() {
-    	robot.addPart(new TouchSensor(SensorPort.S2));
+    // 2.
+    public void maze() {
         gear.forward();
         while (!ts.isPressed()) {}
         gear.stop();

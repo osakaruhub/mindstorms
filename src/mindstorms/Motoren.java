@@ -1,15 +1,19 @@
-/**
- * 
- */
 package mindstorms;
 
 import ch.aplu.ev3.Gear;
 import ch.aplu.ev3.LegoRobot;
 
 /**
- * @author stuewe.oskar
+ * Motoren
  *
+ * @author stuewe.oskar
+ * arguments:
+ * 1 -> cross()
+ * 2 -> squareWave()
+ * 3 -> arc()
+ * 4 -> squares()
  */
+
 public class Motoren {
 	private int strecke = 3000; // Dauer
 	private int drehen = strecke / 2; // 180°
@@ -20,7 +24,6 @@ public class Motoren {
 		robot = new LegoRobot();
 		gear = new Gear();
 		robot.addPart(gear);
-		squares();
 		gear.stop();
 		robot.exit();
 	}
@@ -38,7 +41,7 @@ public class Motoren {
 	}
 
 	// 2.
-	public void bitSin() {
+	public void squareWave() {
 		while (!robot.isEscapeHit()) {
 			for (int i = 0; i < 3; i++) {
 				gear.forward(strecke);

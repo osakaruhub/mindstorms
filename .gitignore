@@ -2,3 +2,5 @@ bin
 build
 EV3JLibA
 *.class
+*.jar
+*.mid

@@ -1,17 +1,26 @@
 package mindstorms;
-import ch.aplu.ev3.*;
+
+import ch.aplu.ev3.LegoRobot;
+import ch.aplu.ev3.Gear;
+import ch.aplu.ev3.UltrasonicSensor;
+import ch.aplu.ev3.UltrasonicListener;
 
 /**
  * Ultraschallsensoren
+ *
+ * arguments:
+ * 1 -> lawnmower()
+ * 2 -> maze()
  */
+
 public class Ultraschallsensoren {
 	LegoRobot robot;
 	Gear gear;
 	UltrasonicSensor us;
 	final int level = 100;
 	final int drehen = 1500;
-    
-	public Ultraschallsensoren() {
+
+    public Ultraschallsensoren() {
         robot = new LegoRobot();
         gear = new Gear();
         robot.addPart(gear);
@@ -21,6 +30,7 @@ public class Ultraschallsensoren {
         robot.exit();
     }
 
+    // 1.
     public void lawnmower() {
         us.addUltrasonicListener(new UltrasonicLawnmowerListener(), level)
         gear.forward();
@@ -28,8 +38,9 @@ public class Ultraschallsensoren {
         gear.stop();
     }
 
-    public void parcours() {
-    	us.addUltrasonicListener(new UltrasonicParcoursListener(), level);
+    // 2.
+    public void maze() {
+    	us.addUltrasonicListener(new UltrasonicMazeListener(), level);
         //TODO: stud
     }
 
@@ -50,7 +61,7 @@ public class Ultraschallsensoren {
         }
     }
 
-    class UltrasonicParcoursListener implements UltrasonicListener {
+    class UltrasonicMazeListener implements UltrasonicListener {
         public void far(SensorPort port, int level) {
             gear.forward();
         }
