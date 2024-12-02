@@ -43,7 +43,7 @@ public class Motoren {
 	// 2.
 	public void squareWave() {
 		while (!robot.isEscapeHit()) {
-			for (int i = 0; i < 3; i++) {
+			for (int i = 0; i < 3; i++) { // fährt in einer quadratischen Welle von länge 3
 				gear.forward(strecke);
 				gear.right(drehen);
 				gear.forward(strecke);
@@ -61,8 +61,8 @@ public class Motoren {
 	public void arc() {
 		while (!robot.isEscapeHit()) {
 			for (int i = 0; i < 3; i++) {
-				gear.rightArc(0.2, strecke * 2);
-				gear.leftArc(0.2, strecke * 2);
+				gear.rightArc(0.2, strecke * 2); // halbkreis rechts
+				gear.leftArc(0.2, strecke * 2); // halbkreis links
 			}
 		}
 	}

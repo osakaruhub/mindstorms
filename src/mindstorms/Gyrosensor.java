@@ -11,9 +11,6 @@ import ch.aplu.ev3.GyroRateSensor;
 /**
  * Gyrosensor
  *
- * arguments:
- * 1 -> square()
- * 2 -> maze()
  */
 
 public class Gyrosensor {
@@ -34,11 +31,9 @@ public class Gyrosensor {
         maze();
     }
 
-    // turns until it has turned 90 degrees
+    // turns until it has turned 90 degrees, until a square has been traversed
     public void square() {
         for (int i = 0; i < 4; i++) {
-        	robot.drawString(angleSensor.getValue() + "", 1,1);
-
             gear.forward(2000);
             gear.right();
             while (angleSensor.getValue() != -90) {
@@ -57,21 +52,23 @@ public class Gyrosensor {
         
         for (char c : track.toCharArray()) {
             gear.forward();
-            while (gear.isMoving()); // move forward until close to a wall
+            while (!robot.isEscapeHit || gear.isMoving()); // move forward until close to a wall
             if (c == 'r') { // rotate left or right depending on char
                 gear.right();
+                while (angleSensor.getValue() != -90) {}
             } else {
                 gear.left();
+                while (angleSensor.getValue() != -90) {}
             }
         }
     }
 
-    class Ultrasonic implements UltrasonicListener {
-        public void near(SensorPort port, int level) {
+    class UltrasonicMazeListener implements UltrasonicListener {
+        public void near(SensorPort port, int level) { // stops when close to a wall, continues the main Thread
             gear.stop();
         }
         public void far(SensorPort port, int level) {
-        	robot.drawString(level + "", 1, 1);
+        	robot.drawString(level + "", 1, 1); //debug
         }
     }
 

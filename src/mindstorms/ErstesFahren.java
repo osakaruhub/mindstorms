@@ -15,11 +15,11 @@ public class ErstesFahren
   public ErstesFahren()
   {
     // Fahr-Roboter
-    LegoRobot robot = new LegoRobot();
+    LegoRobot robot = new LegoRobot(); // erstelle Roboter und füge einen Motor an
     Gear gear = new Gear();
     robot.addPart(gear);
         
-    gear.forward(1000);
+    gear.forward(1000); // simples Fahren
     gear.left(500);
     gear.right(500);
     gear.backward(1000);

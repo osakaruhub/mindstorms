@@ -36,7 +36,10 @@ public class Komplex {
         lul = new LightSensor(SensorPort.S2); 
         lul.addLightListener(new LeftListener(), level);
         robot.addPart(lul);
-        gear = 
+        // create and add TouchSensor
+        ts = new TouchListener(SensorPort.S3);
+        ts.addTouchListener(new rotateListener(), level);
+        robot.addPart(ts);
 
         while (!robot.isEscapeHit() || touchCount < 5) {} // continue until 5 rounds have been done
         robot.exit();
@@ -60,6 +63,7 @@ public class Komplex {
         }
     }
 
+    // dreht sich um, wenn er eine Wand trifft, und dreht sich um
     class rotateListener implements TouchListener {
         public void pressed(SensorPort port) {
             gear.stop();

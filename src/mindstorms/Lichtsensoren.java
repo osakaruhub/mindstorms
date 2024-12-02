@@ -47,7 +47,7 @@ public class Lichtsensoren {
         int count;
 
         public void dark(SensorPort port, int level) {}
-        public void bright(SensorPort port, int level) {
+        public void bright(SensorPort port, int level) { // stopt, dreht sich um und fährt weiter, und stopt wenn es 5 mal gemacht hat
             if (count >= 5) {
                 stop = true;
             } else {
@@ -70,9 +70,9 @@ public class Lichtsensoren {
 	    int count = 0;
         public void dark(SensorPort port, int level) {}
         public void bright(SensorPort port, int level) {
-    	    robot.playTone(600, 300);
+    	    robot.playTone(600, 300); // indiziert ein Streifen
     	    count++;
-    	    System.out.println(count);
+    	    System.out.println(count); // liest auch die Anzahl an Streifen
             try {
                 Thread.sleep(100); // Sleep to prevent busy waiting
             } catch (InterruptedException ex) {
@@ -91,10 +91,10 @@ public class Lichtsensoren {
     }
 
     class circleListener implements LightListener{
-        public void dark(SensorPort port, int level) {
+        public void dark(SensorPort port, int level) { // neigt sich nach links
         	gear.leftArcMilli(2000);
         }
-        public void bright(SensorPort port, int level) {
+        public void bright(SensorPort port, int level) { // neigt sich stärker nach links, um wieder auf Bahn zu bleiben.
         	gear.leftArcMilli(3000);
         }
     }
@@ -102,5 +102,5 @@ public class Lichtsensoren {
 
     public static void main(String[] args) {
         new Lichtsensoren();
-}
+    }
 }

@@ -2,8 +2,8 @@
 
 Milestone:
 - [x] Motoren
-- [] Lichtsensoren
+- [] Lichtsensoren (followLine is a b)
 - [] Drucksensoren
 - [] Ultraschallsensoren
 - [] Gyrosensoren
-- [] Konplexe Aufgabe
+- [] Komplexe Aufgabe

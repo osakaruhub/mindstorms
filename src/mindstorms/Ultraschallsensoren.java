@@ -31,7 +31,7 @@ public class Ultraschallsensoren {
         robot.addPart(us);
         lawnmower();
         robot.playTone(500, 3000);
-maze();
+        maze();
         robot.exit();
     }
 
@@ -45,10 +45,10 @@ maze();
 
     // 2.
     public void maze() {
-        String track = "lrrlrrlr";
-        us = new UltrasonicSensor(SensorPort.S2);
+        String track = "lrrlrrlr"; // hardcoded directions (obviously only works for this maze)
+        us = new UltrasonicSensor();
         robot.addPart(us);
-        us.addUltrasonicListener(new Ultrasonic(), level);
+        us.addUltrasonicListener(new UltrasonicMazeListener(), level);
         
         for (char c : track.toCharArray()) {
             gear.forward();
@@ -67,13 +67,13 @@ maze();
             gear.forward();
         }
 
-        public void near(SensorPort port, int level) {
+        public void near(SensorPort port, int level) { // stop, geht ein bisschen nach hinten, um ein Halbkreis zu machen
             gear.stop();
             gear.backward(1000);
-            if (turns >= 5) {
+            if (turns >= 5) { // fährt solange, bis es 5 mal gedreht ist
             	stop = true;
             }
-            if (turns % 2 == 1) {
+            if (turns % 2 == 1) { // Die Anzahl der Umdrehungen beeinflusst die Richtung des Halbkreises, startend mit leftArc()
                 gear.rightArc(0.2, 2000);
             } else {
                 gear.leftArc(0.2, 2000);
@@ -82,14 +82,15 @@ maze();
         }
     }
 
-    class Ultrasonic implements UltrasonicListener {
+    class UltrasonicMazeListener implements UltrasonicListener {
         public void far(SensorPort port, int level) {
             gear.forward();
-        	robot.drawString(level + "", 1, 1);
+        	robot.drawString(level + "", 1, 1); // debug
 
         }
 
         public void near(SensorPort port, int level) {
-gear.stop();        }
+            gear.stop(); // stoppt, wenn es eine Wand nähert, um den Main Thread fortzusetzen
+        }
     }
 }
