@@ -10,7 +10,6 @@ import ch.aplu.ev3.GyroRateSensor;
 
 /**
  * Gyrosensor
- *
  */
 
 public class Gyrosensor {

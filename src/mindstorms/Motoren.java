@@ -7,11 +7,6 @@ import ch.aplu.ev3.LegoRobot;
  * Motoren
  *
  * @author stuewe.oskar
- * arguments:
- * 1 -> cross()
- * 2 -> squareWave()
- * 3 -> arc()
- * 4 -> squares()
  */
 
 public class Motoren {
@@ -20,6 +15,7 @@ public class Motoren {
 	LegoRobot robot;
 	Gear gear;
 
+    // init
 	public Motoren() {
 		robot = new LegoRobot();
 		gear = new Gear();

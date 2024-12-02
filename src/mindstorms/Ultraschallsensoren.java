@@ -9,10 +9,6 @@ import ch.aplu.ev3.UltrasonicListener;
 
 /**
  * Ultraschallsensoren
- *
- * arguments:
- * 1 -> lawnmower()
- * 2 -> maze()
  */
 
 public class Ultraschallsensoren {
@@ -23,6 +19,7 @@ public class Ultraschallsensoren {
 	final int drehen = 650;
 	static Boolean stop;
 
+    // init
     public Ultraschallsensoren() {
         robot = new LegoRobot();
         gear = new Gear();
@@ -46,13 +43,13 @@ public class Ultraschallsensoren {
     // 2.
     public void maze() {
         String track = "lrrlrrlr"; // hardcoded directions (obviously only works for this maze)
-        us = new UltrasonicSensor();
-        robot.addPart(us);
         us.addUltrasonicListener(new UltrasonicMazeListener(), level);
         
         for (char c : track.toCharArray()) {
-            gear.forward();
-            while (gear.isMoving()); // move forward until close to a wall
+            gear.forward(); // move forward until close to a wall
+            while (gear.isMoving()) {
+                robot.drawString(level + "", 1, 1); // debug
+            }
             if (c == 'r') { // rotate left or right depending on char
                 gear.right();
             } else {
@@ -63,21 +60,12 @@ public class Ultraschallsensoren {
 
     class UltrasonicLawnmowerListener implements UltrasonicListener {
     	int turns = 0;
-        public void far(SensorPort port, int level) {
-            gear.forward();
-        }
-
-        public void near(SensorPort port, int level) { // stop, geht ein bisschen nach hinten, um ein Halbkreis zu machen
+        public void far(SensorPort port, int level) {}
+        public void near(SensorPort port, int level) { // stoppt, geht ein bisschen nach hinten, um ein Halbkreis zu machen
             gear.stop();
             gear.backward(1000);
-            if (turns >= 5) { // fährt solange, bis es 5 mal gedreht ist
-            	stop = true;
-            }
-            if (turns % 2 == 1) { // Die Anzahl der Umdrehungen beeinflusst die Richtung des Halbkreises, startend mit leftArc()
-                gear.rightArc(0.2, 2000);
-            } else {
-                gear.leftArc(0.2, 2000);
-            }
+            stop = turns >= 5; // fährt solange, bis es 5 mal gedreht hat
+            turns % 2 == 1 ? gear.rightArc(0.2, 2000) : gear.leftArc(0.2, 2000); // Die Anzahl der Umdrehungen beeinflusst die Richtung des Halbkreises, startend mit leftArc()
             turns++;
         }
     }
@@ -85,8 +73,7 @@ public class Ultraschallsensoren {
     class UltrasonicMazeListener implements UltrasonicListener {
         public void far(SensorPort port, int level) {
             gear.forward();
-        	robot.drawString(level + "", 1, 1); // debug
-
+        	
         }
 
         public void near(SensorPort port, int level) {

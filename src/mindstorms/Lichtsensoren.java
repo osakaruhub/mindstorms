@@ -8,11 +8,6 @@ import ch.aplu.ev3.LightListener;
 
 /**
  * Lichtsensoren
- * 
- * arguments:
- * 1 -> bw()
- * 2 -> countStripes();
- * 3 -> followLine();
  */ 
 
 public class Lichtsensoren {
@@ -34,8 +29,9 @@ public class Lichtsensoren {
         robot.exit();
     }
 
+    // 1.
     public void bw() {
-        ls.addLightListener(new bwLightListener(), level);
+        ls.addLightListener(new bwLightListener(), level); // Im Quellcode wird der Listener gesetzt (this.lL = lL), wodurch der Name setLightListener() logischer ist
         gear.forward();
         while (!robot.isEscapeHit() || stop) {
     	    robot.drawString(ls.getValue() + "", 1, 1); //debug
@@ -59,6 +55,7 @@ public class Lichtsensoren {
         }
     }
 
+    // 2.
     public void countStripes() {
         ls.addLightListener(new CountStripesLightListener(), level);
         gear.forward();
@@ -81,6 +78,7 @@ public class Lichtsensoren {
         }
     }
 
+    // 3.
     public void circle() {
     	ls.addLightListener(new circleListener(), level);
     	gear.forward();
@@ -98,7 +96,6 @@ public class Lichtsensoren {
         	gear.leftArcMilli(3000);
         }
     }
-
 
     public static void main(String[] args) {
         new Lichtsensoren();

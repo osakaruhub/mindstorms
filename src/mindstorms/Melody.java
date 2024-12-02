@@ -1,10 +1,12 @@
 package mindstorms;
 
 import java.util.LinkedHashMap;
-import ch.aplu.ev3.*;
+import ch.aplu.ev3.LegoRobot;
+
 /**
  * Melody
  */
+
 public class Melody {
 	LegoRobot robot;
 	int duration = 300;

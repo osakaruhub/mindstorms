@@ -8,7 +8,6 @@ import ch.aplu.ev3.LegoRobot;
 
 /**
  * @author stuewe.oskar
- *
  */
 public class ErstesFahren
 {

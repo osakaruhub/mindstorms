@@ -90,7 +90,7 @@ public static float getBPM(Sequence sequence) {
                         System.out.printf("Note OFF: %d at tick %d, Frequency: %.2f Hz, Duration: %.3f seconds%n",
                                           lastNote, event.getTick(), frequency, durationInSeconds);
                         // Play the frequency
-			robot.playtune(frequency, duration);
+                        //robot.playtune(frequency, duration);
                         lastNote = -1;  // Reset lastNote after processing
                     }
                 }
@@ -108,4 +108,3 @@ public static float getBPM(Sequence sequence) {
     }
 
 }
-
