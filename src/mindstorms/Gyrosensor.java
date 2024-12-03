@@ -1,16 +1,9 @@
-package mindstorms;
-
-import ch.aplu.ev3.Gear;
-import ch.aplu.ev3.LegoRobot;
-import ch.aplu.ev3.SensorPort;
-import ch.aplu.ev3.UltrasonicListener;
-import ch.aplu.ev3.UltrasonicSensor;
-import ch.aplu.ev3.GyroAngleSensor;
-import ch.aplu.ev3.GyroRateSensor;
-
 /**
  * Gyrosensor
  */
+package mindstorms;
+
+import ch.aplu.ev3.*;
 
 public class Gyrosensor {
     LegoRobot robot;
@@ -19,6 +12,7 @@ public class Gyrosensor {
     GyroRateSensor rateSensor;
     final int level = 100;
 
+    // init
     public Gyrosensor() {
         LegoRobot robot = new LegoRobot();
         Gear gear = new Gear();
@@ -30,8 +24,9 @@ public class Gyrosensor {
         maze();
     }
 
-    // turns until it has turned 90 degrees, until a square has been traversed
+    // 1.
     public void square() {
+    // turns until it has turned 90 degrees, until a square has been traversed
         for (int i = 0; i < 4; i++) {
             gear.forward(2000);
             gear.right();
@@ -42,6 +37,7 @@ public class Gyrosensor {
         }
     }
 
+    // 2.
     public void maze() {
         // i figured that if it is this particular maze, i should just check when to turn right or left.
         String track = "lrrlrrlr";

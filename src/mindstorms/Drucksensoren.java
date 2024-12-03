@@ -1,20 +1,19 @@
-package mindstorms;
-
-import ch.aplu.ev3.LegoRobot;
-import ch.aplu.ev3.Gear;
-import ch.aplu.ev3.TouchSensor;
-import ch.aplu.ev3.TouchListener;
-
 /** 
  *  Drucksensoren
  */ 
+package mindstorms;
+
+import ch.aplu.ev3.*;
+
 public class Drucksensoren {
 	LegoRobot robot;
 	Gear gear;
 	TouchSensor ts;
 	int drehen = 1500;
+    int level = 100;
     public Drucksensoren() {
 
+        // init
         robot = new LegoRobot();
         gear = new Gear();
         robot.addPart(gear);
@@ -27,6 +26,7 @@ public class Drucksensoren {
 
     // 1.
     public void lawnmower() {
+        us.addTouchListener(new LawnMowerListener(), level);
         gear.forward();
         while (!robot.isEscapeHit()) {}
         gear.stop();
@@ -59,7 +59,6 @@ public class Drucksensoren {
     public void maze() {
         String track = "lrrlrrlr"; // hardcoded directions (obviously only works for this maze)
         us.addTouchListener(new MazeTouchListener(), level);
-        
         for (char c : track.toCharArray()) {
             gear.forward(); // move forward until close to a wall
             while (gear.isMoving()) {
@@ -79,7 +78,7 @@ public class Drucksensoren {
             gear.stop(); // stoppt, wenn we eine Wand beruehrt
         }
     }
-  
+
     public static void main(String[] args) {
         new Drucksensoren();
     }

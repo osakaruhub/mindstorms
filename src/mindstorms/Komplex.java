@@ -1,17 +1,10 @@
-package mindstorms;
-
-import ch.aplu.ev3.Motor;
-import ch.aplu.ev3.MotorPort;
-import ch.aplu.ev3.LegoRobot;
-import ch.aplu.ev3.LightListener;
-import ch.aplu.ev3.SensorPort;
-import ch.aplu.ev3.TouchListener;
-import ch.aplu.ev3.LightSensor;
-import ch.aplu.ev3.TouchSensor;
-
 /**
  * Komplex
  */
+package mindstorms;
+
+import ch.aplu.ev3.*;
+
 public class Komplex {
     static int touchCount = 0;
     LegoRobot robot;
@@ -22,6 +15,7 @@ public class Komplex {
     final int drehen = 1250; 
     final int level = 100; //TODO: test
 
+    // init
     public Komplex() {
         robot = new LegoRobot();
         // create 2 Motor Instances instead of Gear for handling both motors
@@ -45,7 +39,7 @@ public class Komplex {
         robot.exit();
     }
 
-    // two LightListener classes, it will  to the acording side, and 
+    // two LightListener classes, it will rotate to the acording side, and 
     class rightListener implements LightListener {
         public void dark(SensorPort port, int level) {
             leftMotor.forward();

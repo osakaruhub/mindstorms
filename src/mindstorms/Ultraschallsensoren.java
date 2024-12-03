@@ -1,15 +1,9 @@
-package mindstorms;
-
-import ch.aplu.ev3.LegoRobot;
-import ch.aplu.ev3.SensorPort;
-import ch.aplu.ev3.Gear;
-import ch.aplu.ev3.UltrasonicSensor;
-import mindstorms.Gyrosensor.Ultrasonic;
-import ch.aplu.ev3.UltrasonicListener;
-
 /**
  * Ultraschallsensoren
  */
+package mindstorms;
+
+import ch.aplu.ev3.*;
 
 public class Ultraschallsensoren {
 	LegoRobot robot;
@@ -44,7 +38,6 @@ public class Ultraschallsensoren {
     public void maze() {
         String track = "lrrlrrlr"; // hardcoded directions (obviously only works for this maze)
         us.addUltrasonicListener(new UltrasonicMazeListener(), level);
-        
         for (char c : track.toCharArray()) {
             gear.forward(); // move forward until close to a wall
             while (gear.isMoving()) {
@@ -65,7 +58,13 @@ public class Ultraschallsensoren {
             gear.stop();
             gear.backward(1000);
             stop = turns >= 5; // fährt solange, bis es 5 mal gedreht hat
-            turns % 2 == 1 ? gear.rightArc(0.2, 2000) : gear.leftArc(0.2, 2000); // Die Anzahl der Umdrehungen beeinflusst die Richtung des Halbkreises, startend mit leftArc()
+            if (turns % 2 == 1) { // Die Anzahl der Umdrehungen beeinflusst die Richtung des Halbkreises, startend mit leftArc()
+                gear.rightArc(0.2, 2000);
+            } else {
+                gear.leftArc(0.2, 2000);
+            }
+            // wont work supposedly
+            //turns % 2 == 1 ? gear.rightArc(0.2, 2000) : gear.leftArc(0.2, 2000); // Die Anzahl der Umdrehungen beeinflusst die Richtung des Halbkreises, startend mit leftArc()
             turns++;
         }
     }
@@ -73,9 +72,7 @@ public class Ultraschallsensoren {
     class UltrasonicMazeListener implements UltrasonicListener {
         public void far(SensorPort port, int level) {
             gear.forward();
-        	
         }
-
         public void near(SensorPort port, int level) {
             gear.stop(); // stoppt, wenn es eine Wand nähert, um den Main Thread fortzusetzen
         }

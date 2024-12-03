@@ -1,14 +1,9 @@
-package mindstorms;
-
-import ch.aplu.ev3.Gear;
-import ch.aplu.ev3.LegoRobot;
-import ch.aplu.ev3.SensorPort;
-import ch.aplu.ev3.LightSensor;
-import ch.aplu.ev3.LightListener;
-
 /**
  * Lichtsensoren
  */ 
+package mindstorms;
+
+import ch.aplu.ev3.*;
 
 public class Lichtsensoren {
     private final int drehen = 1250;
@@ -18,6 +13,7 @@ public class Lichtsensoren {
     Gear gear;
     LightSensor ls;
 
+    // init
     public Lichtsensoren() {
         robot = new LegoRobot();
         gear = new Gear();
@@ -40,7 +36,7 @@ public class Lichtsensoren {
     }
 
     class bwLightListener implements LightListener {
-        int count;
+        private int count;
 
         public void dark(SensorPort port, int level) {}
         public void bright(SensorPort port, int level) { // stopt, dreht sich um und fährt weiter, und stopt wenn es 5 mal gemacht hat

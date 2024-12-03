@@ -1,17 +1,13 @@
-package mindstorms;
-
-import ch.aplu.ev3.Gear;
-import ch.aplu.ev3.LegoRobot;
-
 /**
  * Motoren
- *
- * @author stuewe.oskar
  */
+package mindstorms;
+
+import ch.aplu.ev3.*;
 
 public class Motoren {
 	private int strecke = 3000; // Dauer
-	private int drehen = strecke / 2; // 180°
+	private int drehen = strecke / 2; // 180 Grad
 	LegoRobot robot;
 	Gear gear;
 
@@ -31,7 +27,7 @@ public class Motoren {
 				gear.forward(strecke);
 				gear.right(drehen);
 				gear.forward(strecke);
-				gear.left(drehen / 2); // 90° drehen
+				gear.left(drehen / 2); // 90 Grad drehen
 			}
 		}
 	}
@@ -39,7 +35,7 @@ public class Motoren {
 	// 2.
 	public void squareWave() {
 		while (!robot.isEscapeHit()) {
-			for (int i = 0; i < 3; i++) { // fährt in einer quadratischen Welle von länge 3
+			for (int i = 0; i < 3; i++) { // faehrt in einer quadratischen Welle von laenge 3
 				gear.forward(strecke);
 				gear.right(drehen);
 				gear.forward(strecke);

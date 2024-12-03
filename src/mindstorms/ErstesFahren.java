@@ -3,17 +3,16 @@
  */
 package mindstorms;
 
-import ch.aplu.ev3.Gear;
-import ch.aplu.ev3.LegoRobot;
+import ch.aplu.ev3.*;
 
 /**
- * @author stuewe.oskar
+ * ErstesFahren
  */
 public class ErstesFahren
 {
   public ErstesFahren()
   {
-    // Fahr-Roboter
+    // init
     LegoRobot robot = new LegoRobot(); // erstelle Roboter und füge einen Motor an
     Gear gear = new Gear();
     robot.addPart(gear);
