@@ -9,33 +9,29 @@ public class Gyrosensor {
     LegoRobot robot;
     Gear gear;
     GyroAngleSensor angleSensor;
-    GyroRateSensor rateSensor;
-    final int level = 100;
+    private static final int LEVEL = 100;
 
     // init
     public Gyrosensor() {
         LegoRobot robot = new LegoRobot();
-        Gear gear = new Gear();
+        gear = new Gear();
         robot.addPart(gear);
         angleSensor = new GyroAngleSensor(SensorPort.S1);
         robot.addPart(angleSensor);
         square();
-        robot.playTone(500, 5000);
-        maze();
     }
 
     // 1.
     public void square() {
-    // turns until it has turned 90 degrees, until a square has been traversed
-        for (int i = 0; i < 4; i++) {
-            gear.forward(2000);
-            gear.right();
-            while (angleSensor.getValue() != -90) {
-            	robot.drawString(angleSensor.getValue() + "", 1,1);
+        // turns until it has turned 90 degrees, until a square has been traversed
+            for (int i = 0; i < 4; i++) {
+                gear.forward(2000);
+                gear.right();
+                while (angleSensor.getValue() >= -90) {}
+                gear.stop();
             }
-            gear.stop();
         }
-    }
+   
 
     // 2.
     public void maze() {
@@ -43,17 +39,17 @@ public class Gyrosensor {
         String track = "lrrlrrlr";
         UltrasonicSensor us = new UltrasonicSensor(SensorPort.S2);
         robot.addPart(us);
-        us.addUltrasonicListener(new UltrasonicMazeListener(), level);
+        us.addUltrasonicListener(new UltrasonicMazeListener(), LEVEL);
         
         for (char c : track.toCharArray()) {
             gear.forward();
             while (!robot.isEscapeHit() || gear.isMoving()); // move forward until close to a wall
             if (c == 'r') { // rotate left or right depending on char
                 gear.right();
-                while (angleSensor.getValue() != -90) {}
+                while (angleSensor.getValue() <= -90);
             } else {
                 gear.left();
-                while (angleSensor.getValue() != -90) {}
+                while (angleSensor.getValue() <= 90);
             }
         }
     }

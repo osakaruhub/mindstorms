@@ -13,7 +13,7 @@ public class ErstesFahren
   public ErstesFahren()
   {
     // init
-    LegoRobot robot = new LegoRobot(); // erstelle Roboter und füge einen Motor an
+    LegoRobot robot = new LegoRobot(); // erstelle Roboter und fuege einen Motor an
     Gear gear = new Gear();
     robot.addPart(gear);
         

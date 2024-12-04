@@ -37,7 +37,7 @@ public class Drucksensoren {
         public void released(SensorPort port) {}
         public void pressed(SensorPort por) {
         	gear.backward(500);
-            if (turns % 2 == 1) { // stoppt, dreht sich und fährt weiter. Die Richtung ändert sich jede Iteration
+            if (turns % 2 == 1) { // stoppt, dreht sich und faehrt weiter. Die Richtung aendert sich jede Iteration
 				gear.backward(1000);
 				gear.right(700);
 				gear.forward(1000);

@@ -9,9 +9,9 @@ public class Ultraschallsensoren {
 	LegoRobot robot;
 	Gear gear;
 	UltrasonicSensor us;
-	final int level = 100;
-	final int drehen = 650;
-	static Boolean stop;
+	private static final int LEVEL = 100;
+	private static final int DREHEN = 650;
+	private static Boolean stop;
 
     // init
     public Ultraschallsensoren() {
@@ -28,7 +28,7 @@ public class Ultraschallsensoren {
 
     // 1.
     public void lawnmower() {
-        us.addUltrasonicListener(new UltrasonicLawnmowerListener(), level);
+        us.addUltrasonicListener(new UltrasonicLawnmowerListener(), LEVEL);
         gear.forward();
         while (!robot.isEscapeHit()||stop) {}
         gear.stop();
@@ -37,16 +37,16 @@ public class Ultraschallsensoren {
     // 2.
     public void maze() {
         String track = "lrrlrrlr"; // hardcoded directions (obviously only works for this maze)
-        us.addUltrasonicListener(new UltrasonicMazeListener(), level);
+        us.addUltrasonicListener(new UltrasonicMazeListener(), LEVEL);
         for (char c : track.toCharArray()) {
             gear.forward(); // move forward until close to a wall
             while (gear.isMoving()) {
-                robot.drawString(level + "", 1, 1); // debug
+                robot.drawString(LEVEL + "", 1, 1); // debug
             }
             if (c == 'r') { // rotate left or right depending on char
-                gear.right();
+                gear.right(DREHEN);
             } else {
-                gear.left();
+                gear.left(DREHEN);
             }
         }
     }
@@ -58,21 +58,18 @@ public class Ultraschallsensoren {
             gear.stop();
             gear.backward(1000);
             stop = turns >= 5; // faehrt solange, bis es 5 mal gedreht hat
-            if (turns % 2 == 1) { // Die Anzahl der Umdrehungen beeinflusst die Richtung des Halbkreises, startend mit leftArc()
+            if (turns++ % 2 == 1) { // Die Anzahl der Umdrehungen beeinflusst die Richtung des Halbkreises, startend mit leftArc()
                 gear.rightArc(0.2, 2000);
             } else {
                 gear.leftArc(0.2, 2000);
             }
             // wont work supposedly
             //turns % 2 == 1 ? gear.rightArc(0.2, 2000) : gear.leftArc(0.2, 2000); // Die Anzahl der Umdrehungen beeinflusst die Richtung des Halbkreises, startend mit leftArc()
-            turns++;
         }
     }
 
     class UltrasonicMazeListener implements UltrasonicListener {
-        public void far(SensorPort port, int level) {
-            gear.forward();
-        }
+        public void far(SensorPort port, int level) {}
         public void near(SensorPort port, int level) {
             gear.stop(); // stoppt, wenn es eine Wand naehert, um den Main Thread fortzusetzen
         }

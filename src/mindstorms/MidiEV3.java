@@ -1,45 +1,26 @@
+package mindstorms;
+
 import javax.sound.midi.*;
-import javax.sound.sampled.*;
+
+import ch.aplu.ev3.EV3Properties;
+import ch.aplu.ev3.LegoRobot;
 import java.io.File;
 
 public class MidiEV3 {
 
     private static float BPM = 120; // Beats per minute
     private static int PPQ = 480; // Pulses per quarter note (common value)
-    private static final float SAMPLE_RATE = 44100; // Sample rate in Hz
+    private static LegoRobot robot;
 
     public static void main(String[] args) {
-        if (args.length == 0) {
-            System.err.println("no argument given");
-            System.exit(1);
-        }
-        try {
-            Sequencer sequencer = MidiSystem.getSequencer();
-            if (sequencer == null) {
-                System.out.println("No sequencer available.");
-                return;
-            }
 
-            sequencer.open();
-            Sequence sequence = MidiSystem.getSequence(new File(args[0]));
-            //BPM = getBPM(sequence);
-            System.out.println(BPM);
-            PPQ = sequence.getResolution();
-            System.out.println(PPQ);
-            sequencer.setSequence(sequence);
-            sequencer.start();
-
-            Track[] tracks = sequence.getTracks();
-            for (Track track : tracks) {
-                extractNotes(track);
-            }
-
-            sequencer.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    	for (String i: new File("./").list()){
+    		System.out.println(i);
+    	}
+    	System.out.println(new EV3Properties().getLocation());
+    	return;
     }
-public static float getBPM(Sequence sequence) {
+    public static float getBPM(Sequence sequence) {
         for (Track track : sequence.getTracks()) {
             for (int i = 0; i < track.size(); i++) {
                 MidiEvent event = track.get(i);
@@ -85,12 +66,12 @@ public static float getBPM(Sequence sequence) {
                 if (sm.getCommand() == ShortMessage.NOTE_OFF) {
                     if (lastNote != -1) {
                         long noteDurationTicks = event.getTick() - lastNoteOnTime;
-                        double frequency = midiToFrequency(lastNote);
-                        double durationInSeconds = ticksToSeconds(noteDurationTicks);
+                        int frequency = midiToFrequency(lastNote);
+                        int duration = ticksToSeconds(noteDurationTicks);
                         System.out.printf("Note OFF: %d at tick %d, Frequency: %.2f Hz, Duration: %.3f seconds%n",
-                                          lastNote, event.getTick(), frequency, durationInSeconds);
+                                          lastNote, event.getTick(), frequency, duration);
                         // Play the frequency
-			//robot.playtune(frequency, duration);
+                        robot.playTone(frequency, duration);
                         lastNote = -1;  // Reset lastNote after processing
                     }
                 }
@@ -98,13 +79,13 @@ public static float getBPM(Sequence sequence) {
         }
     }
 
-    private static double midiToFrequency(int midiNote) {
-        return 440.0 * Math.pow(2, (midiNote - 69) / 12.0);
+    private static int midiToFrequency(int midiNote) {
+        return (int)(440.0 * Math.pow(2, (midiNote - 69) / 12.0));
     }
 
-    private static double ticksToSeconds(long ticks) {
+    private static int ticksToSeconds(long ticks) {
         double secondsPerBeat = 60.0 / BPM;
-        return ticks * secondsPerBeat / PPQ;
+        return (int)(ticks * secondsPerBeat / PPQ);
     }
 
 }

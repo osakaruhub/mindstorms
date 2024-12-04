@@ -8,8 +8,7 @@ import ch.aplu.ev3.*;
 public class Komplex {
     static int touchCount = 0;
     LegoRobot robot;
-    Motor leftMotor;
-    Motor rightMotor;
+    Gear gear;
     LightSensor rul;
     LightSensor lul;
     TouchSensor ts;
@@ -19,19 +18,15 @@ public class Komplex {
     // init
     public Komplex() {
         robot = new LegoRobot();
-        // create 2 Motor Instances instead of Gear for handling both motors
-        leftMotor = new Motor(MotorPort.A);
-        robot.addPart(rightMotor);
-        rightMotor = new Motor(MotorPort.B);
-        robot.addPart(leftMotor);
-        //create and add 2 LightSensor each with its own Listener
+        gear = new Gear();
+          //create and add 2 LightSensor each with its own Listener
         rul = new LightSensor(SensorPort.S1);
-        rul.addLightListener(new rightListener(), level);
+        rul.addLightListener(new RightListener(), level);
         robot.addPart(rul);
         lul = new LightSensor(SensorPort.S2); 
         lul.addLightListener(new LeftListener(), level);
         robot.addPart(lul);
-        // create and add TouchSensor
+          // create and add TouchSensor
         ts = new TouchSensor(SensorPort.S3);
         ts.addTouchListener(new rotateListener());
         robot.addPart(ts);
@@ -40,31 +35,31 @@ public class Komplex {
         robot.exit();
     }
 
-    // two LightListener classes, it will rotate to the acording side, and 
-    class rightListener implements LightListener {
-        public void dark(SensorPort port, int level) {
-            leftMotor.forward();
-        }
-        public void bright(SensorPort port, int level) {
-            leftMotor.stop();
-        }
-    }
+    // Zwei LightListener Klassen, je Richtung
     class LeftListener implements LightListener {
         public void dark(SensorPort port, int level) {
-            rightMotor.forward();
+        	gear.leftArcMilli(3000);
         }
         public void bright(SensorPort port, int level) {
-            rightMotor.stop();
+        	gear.leftArcMilli(2000);
+        }
+    }
+    class RightListener implements LightListener {
+        public void dark(SensorPort port, int level) {
+        	gear.rightArcMilli(3000);
+        }
+        public void bright(SensorPort port, int level) {
+        	gear.rightArcMilli(2000);
         }
     }
 
-    // dreht sich um, wenn er eine Wand trifft, und dreht sich um
+    // dreht sich um, wenn er eine Wand trifft
     class rotateListener implements TouchListener {
         public void pressed(SensorPort port) {
             gear.stop();
             gear.right(drehen);
             gear.forward();
-            robot.displayString(touchCount++);
+            robot.drawString(touchCount++ + "", 1, 1);
         }
         public void released(SensorPort port) {}
     }
