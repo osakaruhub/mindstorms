@@ -43,11 +43,11 @@ public class Gyrosensor {
         String track = "lrrlrrlr";
         UltrasonicSensor us = new UltrasonicSensor(SensorPort.S2);
         robot.addPart(us);
-        us.addUltrasonicListener(new Ultrasonic(), level);
+        us.addUltrasonicListener(new UltrasonicMazeListener(), level);
         
         for (char c : track.toCharArray()) {
             gear.forward();
-            while (!robot.isEscapeHit || gear.isMoving()); // move forward until close to a wall
+            while (!robot.isEscapeHit() || gear.isMoving()); // move forward until close to a wall
             if (c == 'r') { // rotate left or right depending on char
                 gear.right();
                 while (angleSensor.getValue() != -90) {}

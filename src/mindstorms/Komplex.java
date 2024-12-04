@@ -12,6 +12,7 @@ public class Komplex {
     Motor rightMotor;
     LightSensor rul;
     LightSensor lul;
+    TouchSensor ts;
     final int drehen = 1250; 
     final int level = 100; //TODO: test
 
@@ -31,8 +32,8 @@ public class Komplex {
         lul.addLightListener(new LeftListener(), level);
         robot.addPart(lul);
         // create and add TouchSensor
-        ts = new TouchListener(SensorPort.S3);
-        ts.addTouchListener(new rotateListener(), level);
+        ts = new TouchSensor(SensorPort.S3);
+        ts.addTouchListener(new rotateListener());
         robot.addPart(ts);
 
         while (!robot.isEscapeHit() || touchCount < 5) {} // continue until 5 rounds have been done

@@ -57,7 +57,7 @@ public class Ultraschallsensoren {
         public void near(SensorPort port, int level) { // stoppt, geht ein bisschen nach hinten, um ein Halbkreis zu machen
             gear.stop();
             gear.backward(1000);
-            stop = turns >= 5; // fährt solange, bis es 5 mal gedreht hat
+            stop = turns >= 5; // faehrt solange, bis es 5 mal gedreht hat
             if (turns % 2 == 1) { // Die Anzahl der Umdrehungen beeinflusst die Richtung des Halbkreises, startend mit leftArc()
                 gear.rightArc(0.2, 2000);
             } else {
@@ -74,7 +74,7 @@ public class Ultraschallsensoren {
             gear.forward();
         }
         public void near(SensorPort port, int level) {
-            gear.stop(); // stoppt, wenn es eine Wand nähert, um den Main Thread fortzusetzen
+            gear.stop(); // stoppt, wenn es eine Wand naehert, um den Main Thread fortzusetzen
         }
     }
 }

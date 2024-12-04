@@ -10,7 +10,6 @@ public class Drucksensoren {
 	Gear gear;
 	TouchSensor ts;
 	int drehen = 1500;
-    int level = 100;
     public Drucksensoren() {
 
         // init
@@ -26,7 +25,7 @@ public class Drucksensoren {
 
     // 1.
     public void lawnmower() {
-        us.addTouchListener(new LawnMowerListener(), level);
+        ts.addTouchListener(new LawnMowerListener());
         gear.forward();
         while (!robot.isEscapeHit()) {}
         gear.stop();
@@ -35,8 +34,8 @@ public class Drucksensoren {
     public class LawnMowerListener implements TouchListener {
         int turns;
 
-        public void released(SensorPort port, int level) {}
-        public void pressed(SensorPort port, int level) {
+        public void released(SensorPort port) {}
+        public void pressed(SensorPort por) {
         	gear.backward(500);
             if (turns % 2 == 1) { // stoppt, dreht sich und fährt weiter. Die Richtung ändert sich jede Iteration
 				gear.backward(1000);
@@ -58,11 +57,10 @@ public class Drucksensoren {
     // 2.
     public void maze() {
         String track = "lrrlrrlr"; // hardcoded directions (obviously only works for this maze)
-        us.addTouchListener(new MazeTouchListener(), level);
+        ts.addTouchListener(new MazeTouchListener());
         for (char c : track.toCharArray()) {
             gear.forward(); // move forward until close to a wall
             while (gear.isMoving()) {
-                robot.drawString(level + "", 1, 1); // debug
             }
             if (c == 'r') { // rotate left or right depending on char
                 gear.right();
@@ -73,8 +71,8 @@ public class Drucksensoren {
     }
 
     class MazeTouchListener implements TouchListener {
-        public void released(SensorPort port, int level) {}
-        public void pressed(SensorPort port, int level) {
+        public void released(SensorPort port) {}
+        public void pressed(SensorPort port) {
             gear.stop(); // stoppt, wenn we eine Wand beruehrt
         }
     }
