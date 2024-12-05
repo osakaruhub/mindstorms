@@ -23,7 +23,7 @@ public class Motor2                                        //die Klasse "Motor2"
         gear.forward(strecke);                             //der Lego-Roboter fährt 3 Sekenden nach vorne
         gear.right(grad90);                                //der Lego-Roboter dreht sich um 90 grad nach rechts
         gear.forward(strecke);                             //der Lego-Roboter fährt 3 Sekenden nach vorne     
-        gear.left(grad90);                                 //der Lego-Roboter dreht sich um 90 grad nach links      
+        gear.left(grad90);                                 //der Lego-Roboter dreht sich 0,7 Sekunden nach links. somit wird eine 90 grad Drehung erreicht      
         gear.forward(strecke);                             //der Lego-Roboter fährt 3 Sekenden nach vorne 
         gear.left(grad90);                                 //der Lego-Roboter dreht sich um 90 grad nach links
       }                           
