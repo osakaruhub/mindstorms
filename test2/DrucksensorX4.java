@@ -41,8 +41,8 @@ public class Drucksensor2                                               //die Kl
             
             if (counter == 1)                                           //if-Block, der ausgeführt wird, wenn der counter Wert gleich 1 ist
             {
-                Tools.startTimer();
-                long startTime = Tools.getTime();                       //im Long "startTime" wird der Wert von Tools.getTime() gespeichert
+                Tools.startTimer();                                     //startet einen Timer
+                long startTime = Tools.getTime();                       //im Long "startTime" wird der Wert von Tools.getTime() (dem eben genannten Timer) gespeichert
 
                 while (Tools.getTime() - startTime < timer)             //der Code innerhalb der while-Schleife wird solange ausgeführt, wie die Differenz von Tools.getTime () und startTime kleiner als der Wert von timer (5000) ist. heißt er wird ausgeführt solange noch keine 5 Sekunden vergangen sind
                 {
