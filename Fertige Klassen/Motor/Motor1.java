@@ -30,6 +30,6 @@ public class Motor1                                   //die Klasse "Motor1" füh
   
   public static void main(String [] args)         
   {                             
-      new Motor1();                                          //ruft den Konstruktor auf, in dem die ganzen Anweisungen sind                 
+    new Motor1();                                          //ruft den Konstruktor auf, in dem die ganzen Anweisungen sind                 
   }                             
 }         
