@@ -1,11 +1,11 @@
-package Motor;                             
+package Motor;                                             //die Klassen "Motor1", "Motor2", "Motor3", "Motor4" liegen alle im Package "Motor"        
 
-import ch.aplu.ev3.*;                       
+import ch.aplu.ev3.*;                                      //importiert die Klassenbibliothek Ev3JLibA            
 
-public class Motor2                         
+public class Motor2                                        //die Klasse "Motor2" führt die zweite Aufgabe von den Motoren aus          
 {     
-  int strecke = 3000;
-  int grad90  = 700;
+  int strecke = 3000;                                      //in den Integer "strecke" wird der Wert 3000 gespeichert
+  int grad90  = 700;                                       //in den Integer "grad90"  wird der Wert  700 gespeichert
   
   public Motor2()                         
   {                               
