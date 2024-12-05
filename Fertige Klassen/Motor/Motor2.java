@@ -35,6 +35,6 @@ public class Motor2
   
     public static void main(String [] args)              
   {                               
-      new Motor2();                       
+    new Motor2();                       
   }                               
 }   
