@@ -32,9 +32,9 @@ public class Drucksensor2                                               //die Kl
             {
                 if (ts1.isPressed() || ts2.isPressed())                 //ein if-Block, der ausgeführt wird wenn der Touch-Sensor 1 (ts1) oder wenn der Touch-Sensor 2 (ts2) ausgelöst wird
                 {
-                    gear.backward(strecke);
-                    gear.right(grad90);
-                    gear.forward();
+                    gear.backward(strecke);                             //der Lego-Roboter bewegt sich die vorgegebene Anzahl von Milisekunden nach hinten; bedeutet er fährt 1 Sekunde nach hinten
+                    gear.right(grad90);                                 //der Lego-Roboter dreht sich 0,7 Sekunden nach rechts. somit wird eine 90 grad Drehung erreicht
+                    gear.forward();                                     //der Roboter bewegt sich für eine unbestimmte Zeit nach vorne. Methode forward() ohne Parameter ist nicht blockierend
                     counter++;
                 }
             }    
