@@ -28,12 +28,12 @@ public class Motor4                                           //die Klasse "Moto
         gear.forward(strecke);                                //der Lego-Roboter fährt 3 Sekunden nach vorne
         gear.left(grad180);                                   //der Lego-Roboter dreht sich 1,4 Sekunden nach links. somit wird eine 180 grad Drehung erreicht             
       } 
-      robot.exit(); 
+      robot.exit();                                           //beendet das Programm
     //}                                                       
   }                                 
   
   public static void main(String [] args)             
   {                                 
-    new Motor4();                         
-  }                                 
+    new Motor4();                                             //ruft den Konstruktor auf, in dem die ganzen Anweisungen sind         
+  }                                       
 }  
