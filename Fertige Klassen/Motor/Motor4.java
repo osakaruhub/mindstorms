@@ -6,13 +6,13 @@ public class Motor4                                           //die Klasse "Moto
 {       
   int strecke = 3000;                                         //in den Integer "strecke" wird der Wert 3000 gespeichert
   int grad180 = 1400;                                         //in den Integer "grad180" wird der Wert 1400 gespeichert
-  int grad90  = 700;                                          //in den Integer "grad90"  wird der Wert 700 gespeichert
+  int grad90  = 700;                                          //in den Integer "grad90"  wird der Wert  700 gespeichert
   
   public Motor4()                           
   {                                 
     LegoRobot robot = new LegoRobot();                
       
-    Gear gear = new Gear();                     
+    Gear gear = new Gear();                                   //erzeugt ein Fahrwerk namens "gear" mit Motoren an den Anschlüssen A und B         
     robot.addPart(gear);                      
 
     //while (!robot.isEscapeHit())                  
