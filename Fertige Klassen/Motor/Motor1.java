@@ -1,4 +1,4 @@
-package Motor;                          
+package Motor;                                        //die Klassen "Motor1",  "Motor2", "Motor3", "Motor4" liegen alle im Package "Motor"
 
 import ch.aplu.ev3.*;                     
 
@@ -8,10 +8,10 @@ public class Motor1
   
   public Motor1()                       
   {                             
-      LegoRobot robot = new LegoRobot();            
+    LegoRobot robot = new LegoRobot();            
       
-      Gear gear = new Gear();                 
-      robot.addPart(gear);                  
+    Gear gear = new Gear();                 
+    robot.addPart(gear);                  
       
     //while (!robot.isEscapeHit())              
     //{                           
@@ -26,8 +26,8 @@ public class Motor1
     //}                                             
     }                             
   
-    public static void main(String [] args)         
-    {                             
+  public static void main(String [] args)         
+  {                             
       new Motor1();                     
-    }                             
+  }                             
 }         
