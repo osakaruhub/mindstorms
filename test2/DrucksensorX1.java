@@ -11,8 +11,8 @@ public class Drucksensor1 					//die Klasse "Drucksensor1" führt die erste Aufg
   {
 	LegoRobot robot = new LegoRobot();
 	
-	Gear gear = new Gear();
-	robot.addPart(gear);
+	Gear gear = new Gear();					//erzeugt ein Fahrwerk namens "gear" mit Motoren an den Anschlüssen A und B 
+	robot.addPart(gear);					//fügt dem Roboterobjekt "robot" das Fahtwerk "gear" zu
 	
 	TouchSensor ts = new TouchSensor(SensorPort.S1);
 	robot.addPart(ts);
