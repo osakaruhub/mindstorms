@@ -35,34 +35,34 @@ public class Drucksensor2                                               //die Kl
                     gear.backward(strecke);                             //der Lego-Roboter bewegt sich die vorgegebene Anzahl von Milisekunden nach hinten; bedeutet er fährt 1 Sekunde nach hinten
                     gear.right(grad90);                                 //der Lego-Roboter dreht sich 0,7 Sekunden nach rechts. somit wird eine 90 grad Drehung erreicht
                     gear.forward();                                     //der Roboter bewegt sich für eine unbestimmte Zeit nach vorne. Methode forward() ohne Parameter ist nicht blockierend
-                    counter++;
+                    counter++;                                          //der counter Wert wird um 1 erhöht
                 }
             }    
             
-            if (counter == 1) 
+            if (counter == 1)                                           //if-Block, der ausgeführt wird, wenn der counter Wert gleich 1 ist
             {
                 Tools.startTimer();
-                long startTime = Tools.getTime(); // Store the start time
+                long startTime = Tools.getTime();                       //im Long "startTime" wird der Wert von Tools.getTime() gespeichert
 
-                while (Tools.getTime() - startTime < timer) // Check the elapsed time
+                while (Tools.getTime() - startTime < timer)             //der Code innerhalb der while-Schleife wird solange ausgeführt, wie die Differenz von Tools.getTime () und startTime kleiner als der Wert von timer (5000) ist. heißt er wird ausgeführt solange noch keine 5 Sekunden vergangen sind
                 {
-                    if (ts1.isPressed() || ts2.isPressed()) 
+                    if (ts1.isPressed() || ts2.isPressed())             //ein if-Block, der ausgeführt wird wenn der Touch-Sensor 1 (ts1) oder wenn der Touch-Sensor 2 (ts2) ausgelöst wird
                     {
-                        gear.backward(strecke);
-                        gear.right(grad180); // This could also be a constant
-                        gear.forward();
+                        gear.backward(strecke);                         //der Lego-Roboter bewegt sich die vorgegebene Anzahl von Milisekunden nach hinten; bedeutet er fährt 1 Sekunde nach hinten
+                        gear.right(grad180);                            //der Lego-Roboter dreht sich 1,4 Sekunden nach rechts. somit wird eine 180 grad Drehung erreicht
+                        gear.forward();                                 //der Roboter bewegt sich für eine unbestimmte Zeit nach vorne. Methode forward() ohne Parameter ist nicht blockierend
                     }
                 }
 
-                counter = 0; // Reset the counter after the time has elapsed
+                counter = 0;                                            //der counter wird (nach Ablauf von 5 Sekunden) wieder auf 0 gesetzt
             }
         }       
                 
-        robot.exit();                                                                                    //beendet das Programm (regulär)
+        robot.exit();                                                   //beendet das Programm (regulär)
     }
 
     public static void main(String[] args)
     {
-        new Drucksensor2();
+        new Drucksensor2();                                             //ruft den Konstruktor auf, in dem die ganzen Anweisungen sind
     }
 }
