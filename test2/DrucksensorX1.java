@@ -2,10 +2,13 @@ package test;
 
 import ch.aplu.ev3.*;
 
-public class DrucksensorX1 
+public class Drucksensor1 
 {
-	public DrucksensorX1()
-	{
+  int strecke = 1000;
+  int grad90  = 700;
+	
+  public Drucksensor1()
+  {
 
 	LegoRobot robot = new LegoRobot();
 	
@@ -20,52 +23,39 @@ public class DrucksensorX1
 	
 	gear.forward();
 	
-	
-	
-	 //while (!robot.isEscapeHit())	
-	 
-		 while(x <= 5)
-		 {
-		
-		
+	//while (!robot.isEscapeHit())
+	//{	
+	   while(x <= 5)
+	   {
 		if(ts.isPressed() && counter % 2 == 0)
 		{
-		gear.backward(1000);
-		gear.right(700);
-		gear.forward(1000);
-		gear.right(700);
-		gear.forward();
-		counter++;
-		x++;
+		 gear.backward(strecke);
+		 gear.right(grad90);
+		 gear.forward(strecke);
+		 gear.right(grad90);
+		 gear.forward();
+		 counter++;
+		 x++;
 		}
 		
 		if(ts.isPressed() && counter % 2 == 1)
 		{
-		
-		gear.backward(1000);
-		gear.left(700);
-		gear.forward(1000);
-		gear.left(700);
-		gear.forward();
-		counter--;
-		x++;
+		 gear.backward(strecke);
+		 gear.left(grad90);
+		 gear.forward(strecke);
+		 gear.left(grad90);
+		 gear.forward();
+		 counter--;
+		 x++;
 		}
+	   }
+	//}
 		
-		
-	}
-	
-	
-	 
-	 robot.exit();
-	
-	
-	}
-	
-	
+	robot.exit();
+  }
 	
 	public static void main(String [] args)
 	{
-		new DrucksensorX1();
+		new Drucksensor1();
 	}
-
 }
