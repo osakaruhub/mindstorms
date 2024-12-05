@@ -16,17 +16,17 @@ public class Motor3                                          //die Klasse "Motor
 
     //while (!robot.isEscapeHit())                          //die while-Schleife ist in diesem Programm zwar nicht erforderlich, kann aber dennoch bei Bedarf eingebaut werden          
     //{                               
-      for (int i = 0; i < 3; i++)                 
+      for (int i = 0; i < 3; i++)                           //die for-Schleife wird dreimal wiederholt
       {                             
-        gear.rightArc(radius, time);                     //Der Roboter fährt 4000 Milisekunden (= 4 Sekunden) eine Kurve nach rechts, mit einem Radius von 0,1 Metern (= 10 Zentimeter). Dieser Befehl ist ebenfalls blockierend.
-        gear.leftArc(radius, time);                
+        gear.rightArc(radius, time);                        //der Roboter fährt 8000 Milisekunden (= 8 Sekunden) (time) eine Kurve nach rechts, mit einem Radius von 0,2 Metern (= 20 Zentimeter) (radius)
+        gear.leftArc(radius, time);                         //der Roboter fährt 8000 Milisekunden (= 8 Sekunden) (time) eine Kurve nach links, mit einem Radius von 0,2 Metern (= 20 Zentimeter) (radius)
       } 
     //} 
-    robot.exit();
+    robot.exit();                                           //beendet das Programm
   }                                 
   
   public static void main(String [] args)             
   {                                 
-    new Motor3();                         
+    new Motor3();                                           //ruft den Konstruktor auf, in dem die ganzen Anweisungen sind        
   }                                 
 }     
