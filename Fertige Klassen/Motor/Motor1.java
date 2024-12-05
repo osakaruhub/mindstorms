@@ -19,9 +19,9 @@ public class Motor1                                   //die Klasse "Motor1" füh
     //{                           
       for (int i = 0; i < 4; i++)                     //die for-Schleife wird viermal wiederholt            
       {                         
-        gear.forward(strecke);                        //der Lego-Roboter bewegt sich die vorgegebene Anzahl von Milisekunden nach vorne; bedeutet er fährt 3 Sekenden nach vorne            
+        gear.forward(strecke);                        //der Lego-Roboter bewegt sich die vorgegebene Anzahl von Millisekunden nach vorne; bedeutet er fährt 3 Sekenden nach vorne            
         gear.right(grad180);                          //der Lego-Roboter dreht sich 1,4 Sekunden nach rechts. somit wird eine 180 grad Drehung erreicht           
-        gear.forward(strecke);                        //der Lego-Roboter fährt 3 Sekenden nach vorne
+        gear.forward(strecke);                        //der Lego-Roboter fährt 3 Sekunden nach vorne
         gear.left(grad90);                            //der Lego-Roboter dreht sich 0,7 Sekunden nach links. somit wird eine 90 grad Drehung erreicht 
       } 
       robot.exit();                                   //beendet das Programm
