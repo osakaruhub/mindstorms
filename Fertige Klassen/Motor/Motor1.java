@@ -5,6 +5,8 @@ import ch.aplu.ev3.*;
 public class Motor1                       
 {         
   int strecke = 3000;
+  int grad180 = 1400;
+  int grad90  = 700;
   
   public Motor1()                       
   {                             
@@ -18,9 +20,9 @@ public class Motor1
       for (int i = 0; i < 4; i++)             
       {                         
         gear.forward(strecke);                 
-        gear.right(1400);             
+        gear.right(grad180);             
         gear.forward(strecke);                 
-        gear.left(700);               
+        gear.left(grad90);               
       } 
       robot.exit();   
     //}                                             
