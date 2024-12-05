@@ -4,15 +4,16 @@ import ch.aplu.ev3.*;                                      //importiert die Klas
 
 public class Motor2                                        //die Klasse "Motor2" führt die zweite Aufgabe von den Motoren aus          
 {     
-  int strecke = 3000;                                      //in den Integer "strecke" wird der Wert 3000 gespeichert
-  int grad90  = 700;                                       //in den Integer "grad90"  wird der Wert  700 gespeichert
-  
   public Motor2()                         
   {                               
     LegoRobot robot = new LegoRobot();                     //deklariert und initialisiert ein neues LegoRobot Objekt mit dem Namen "robot"   
     
     Gear gear = new Gear();                                //erzeugt ein Fahrwerk namens "gear" mit Motoren an den Anschlüssen A und B 
     robot.addPart(gear);                                   //fügt dem Roboterobjekt "robot" das Fahtwerk "gear" zu
+
+    int strecke = 3000;                                    //in den Integer "strecke" wird der Wert 3000 gespeichert
+    int grad90  = 700;                                     //in den Integer "grad90"  wird der Wert  700 gespeichert
+    
 
     //while (!robot.isEscapeHit())                         //die while-Schleife ist in diesem Programm zwar nicht erforderlich, kann aber dennoch bei Bedarf eingebaut werden    
     //{                             
