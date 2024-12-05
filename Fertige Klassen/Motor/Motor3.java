@@ -4,15 +4,15 @@ import ch.aplu.ev3.*;                                        //importiert die Kl
 
 public class Motor3                                          //die Klasse "Motor3" führt die dritte Aufgabe von den Motoren aus                       
 {                    
-  double radius = 0.2;                                       //in dem Double "radius" wird der Wert 0,2 gespeichert
-  double time   = 8000;
+  double radius = 0.2;                                       //in den Double "radius" wird der Wert 0,2 gespeichert
+  double time   = 8000;                                      //in den Double "time" wird der Wert 8000 gespeichert
   
   public Motor3()                           
   {                                 
     LegoRobot robot = new LegoRobot();                
       
-    Gear gear = new Gear();                     
-    robot.addPart(gear);                      
+    Gear gear = new Gear();                                 //erzeugt ein Fahrwerk namens "gear" mit Motoren an den Anschlüssen A und B 
+    robot.addPart(gear);                                    //fügt dem Roboterobjekt "robot" das Fahtwerk "gear" zu             
 
     //while (!robot.isEscapeHit())                  
     //{                               
