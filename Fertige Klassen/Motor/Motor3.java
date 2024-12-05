@@ -9,12 +9,12 @@ public class Motor3                                          //die Klasse "Motor
   
   public Motor3()                           
   {                                 
-    LegoRobot robot = new LegoRobot();                
+    LegoRobot robot = new LegoRobot();                      //deklariert und initialisiert ein neues LegoRobot Objekt mit dem Namen "robot"        
       
     Gear gear = new Gear();                                 //erzeugt ein Fahrwerk namens "gear" mit Motoren an den Anschlüssen A und B 
     robot.addPart(gear);                                    //fügt dem Roboterobjekt "robot" das Fahtwerk "gear" zu             
 
-    //while (!robot.isEscapeHit())                  
+    //while (!robot.isEscapeHit())                          //die while-Schleife ist in diesem Programm zwar nicht erforderlich, kann aber dennoch bei Bedarf eingebaut werden          
     //{                               
       for (int i = 0; i < 3; i++)                 
       {                             
