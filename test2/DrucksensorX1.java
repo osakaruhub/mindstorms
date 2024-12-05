@@ -26,7 +26,7 @@ public class Drucksensor1 						//die Klasse "Drucksensor1" führt die erste Auf
 	//{	
 	   while(counter <= 5)						//die while-Schleife läuft solange bis der Wert für counter kleiner oder gleich 5 ist
 	   {
-		if(ts.isPressed() && counter % 2 == 0)			//ein If-Block, der ausgeführt wird wenn der Drucksensor (ts) ausgelöst wird und der Counter-Wert eine gerade Zahl ist (oder 0)
+		if(ts.isPressed() && counter % 2 == 0)			//ein if-Block, der ausgeführt wird wenn der Drucksensor (ts) ausgelöst wird und der Counter-Wert eine gerade Zahl ist (oder 0)
 		{
 		 gear.backward(strecke);				//der Lego-Roboter bewegt sich die vorgegebene Anzahl von Milisekunden nach hinten; bedeutet er fährt 3 Sekenden nach hinten            
 		 gear.right(grad90);					//der Lego-Roboter dreht sich 0,7 Sekunden nach rechts. somit wird eine 90 grad Drehung erreicht 
@@ -36,23 +36,22 @@ public class Drucksensor1 						//die Klasse "Drucksensor1" führt die erste Auf
 		 counter++;						//der counter Wert wird um 1 erhöht
 		}
 		
-		if(ts.isPressed() && counter % 2 == 1)			//ein If-Block, der ausgeführt wird wenn der Drucksensor (ts) ausgelöst wird und der Counter-Wert eine ungerade Zahl ist
+		if(ts.isPressed() && counter % 2 == 1)			//ein if-Block, der ausgeführt wird wenn der Drucksensor (ts) ausgelöst wird und der Counter-Wert eine ungerade Zahl ist
 		{
-		 gear.backward(strecke);
-		 gear.left(grad90);
-		 gear.forward(strecke);
-		 gear.left(grad90);
-		 gear.forward();
-		 counter++;
+		 gear.backward(strecke);				//der Lego-Roboter bewegt sich die vorgegebene Anzahl von Milisekunden nach hinten; bedeutet er fährt 3 Sekenden nach hinten
+		 gear.left(grad90);					//der Lego-Roboter dreht sich 0,7 Sekunden nach links. somit wird eine 90 grad Drehung erreicht 
+		 gear.forward(strecke);					//der Lego-Roboter bewegt sich die vorgegebene Anzahl von Milisekunden nach vorne; bedeutet er fährt 3 Sekenden nach vorne
+		 gear.left(grad90);					//der Lego-Roboter dreht sich um 90 grad nach links
+		 gear.forward();					//der Roboter bewegt sich für eine unbestimmte Zeit nach vorne. Methode forward() ohne Parameter ist nicht blockierend
+		 counter++;						//der counter Wert wird um 1 erhöht
 		}
 	   }
 	//}
-		
-	robot.exit();
+	robot.exit();							//beendet das Programm
   }
 	
   public static void main(String [] args)
   {
-	new Drucksensor1();
+	new Drucksensor1();						//ruft den Konstruktor auf, in dem die ganzen Anweisungen sind
   }
 }
