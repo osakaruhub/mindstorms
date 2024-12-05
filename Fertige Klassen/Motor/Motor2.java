@@ -9,32 +9,32 @@ public class Motor2                                        //die Klasse "Motor2"
   
   public Motor2()                         
   {                               
-    LegoRobot robot = new LegoRobot();              
+    LegoRobot robot = new LegoRobot();                     //deklariert und initialisiert ein neues LegoRobot Objekt mit dem Namen "robot"   
     
-    Gear gear = new Gear();                   
-    robot.addPart(gear);                    
+    Gear gear = new Gear();                                //erzeugt ein Fahrwerk namens "gear" mit Motoren an den Anschlüssen A und B 
+    robot.addPart(gear);                                   //fügt dem Roboterobjekt "robot" das Fahtwerk "gear" zu
 
-    //while (!robot.isEscapeHit())                
+    //while (!robot.isEscapeHit())                         //die while-Schleife ist in diesem Programm zwar nicht erforderlich, kann aber dennoch bei Bedarf eingebaut werden    
     //{                             
-      for (int i = 0; i < 3; i++)               
+      for (int i = 0; i < 3; i++)                          //die for-Schleife wird dreimal wiederholt            
       {                           
-        gear.forward(strecke);                  
-        gear.right(grad90);                  
-        gear.forward(strecke);                   
-        gear.right(grad90);                  
-        gear.forward(strecke);                  
-        gear.left(grad90);                   
-        gear.forward(strecke);                  
-        gear.left(grad90);                   
+        gear.forward(strecke);                             //der Lego-Roboter bewegt sich die vorgegebene Anzahl von Milisekunden nach vorne; bedeutet er fährt 3 Sekenden nach vorne             
+        gear.right(grad90);                                //der Lego-Roboter dreht sich 0,7 Sekunden nach rechts. somit wird eine 90 grad Drehung erreicht           
+        gear.forward(strecke);                             //der Lego-Roboter fährt 3 Sekenden nach vorne
+        gear.right(grad90);                                //der Lego-Roboter dreht sich um 90 grad nach rechts
+        gear.forward(strecke);                             //der Lego-Roboter fährt 3 Sekenden nach vorne     
+        gear.left(grad90);                                 //der Lego-Roboter dreht sich um 90 grad nach links      
+        gear.forward(strecke);                             //der Lego-Roboter fährt 3 Sekenden nach vorne 
+        gear.left(grad90);                                 //der Lego-Roboter dreht sich um 90 grad nach links
       }                           
-      gear.forward(strecke);  
+      gear.forward(strecke);                               //der Lego-Roboter fährt 3 Sekenden nach vorne
       
-      robot.exit(); 
+      robot.exit();                                        //beendet das Programm
     //}                                                   
   }                               
   
     public static void main(String [] args)              
   {                               
-    new Motor2();                       
+    new Motor2();                                          //ruft den Konstruktor auf, in dem die ganzen Anweisungen sind
   }                               
 }   
