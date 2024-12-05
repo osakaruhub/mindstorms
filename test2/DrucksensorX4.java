@@ -2,14 +2,14 @@ package test;
 
 import ch.aplu.ev3.*;
 
-public class DrucksensorX4
+public class Drucksensor2
 {
     private static final int BACKWARD_DISTANCE = 1000;
     private static final int RIGHT_TURN_DISTANCE = 700;
     private static final int FORWARD_DISTANCE = 1000;
     private static final long TIMER_DURATION = 5000; // 5 seconds
 
-    public DrucksensorX4()
+    public Drucksensor2()
     {
         int counter = 0;
         
@@ -61,6 +61,6 @@ public class DrucksensorX4
 
     public static void main(String[] args)
     {
-        new DrucksensorX4();
+        new Drucksensor2();
     }
 }
