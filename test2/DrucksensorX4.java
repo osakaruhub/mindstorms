@@ -2,7 +2,7 @@ package Drucksensor;                                                //die Klasse
 
 import ch.aplu.ev3.*;                                               //importiert die Klassenbibliothek Ev3JLibA
 
-public class Drucksensor2
+public class Drucksensor2                                           //die Klasse "Drucksensor2" führt die zweite Aufgabe von den Drucksensoren aus
 {
     public Drucksensor2()
     {
