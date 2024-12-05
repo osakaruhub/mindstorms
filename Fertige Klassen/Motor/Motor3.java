@@ -6,10 +6,10 @@ public class Motor3
 {                                   
   public Motor3()                           
   {                                 
-      LegoRobot robot = new LegoRobot();                
+    LegoRobot robot = new LegoRobot();                
       
-      Gear gear = new Gear();                     
-      robot.addPart(gear);                      
+    Gear gear = new Gear();                     
+    robot.addPart(gear);                      
 
     //while (!robot.isEscapeHit())                  
     //{                               
