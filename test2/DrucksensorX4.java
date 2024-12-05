@@ -1,19 +1,13 @@
-package test;
+package Drucksensor;
 
 import ch.aplu.ev3.*;
 
 public class Drucksensor2
 {
-    private static final int BACKWARD_DISTANCE = 1000;
-    private static final int RIGHT_TURN_DISTANCE = 700;
-    private static final int FORWARD_DISTANCE = 1000;
-    private static final long TIMER_DURATION = 5000; // 5 seconds
-
     public Drucksensor2()
     {
-        int counter = 0;
-        
         LegoRobot robot = new LegoRobot();
+        
         Gear gear = new Gear();
         robot.addPart(gear);
 
@@ -21,6 +15,14 @@ public class Drucksensor2
         TouchSensor ts2 = new TouchSensor(SensorPort.S2);
         robot.addPart(ts1);
         robot.addPart(ts2);
+
+        int strecke = 1000;
+        int grad180 = 1400;
+        int grad90  =  700;
+        long timer  = 5000; // 5 seconds
+
+        int counter = 0;
+        
         
         gear.forward();
 
@@ -30,8 +32,8 @@ public class Drucksensor2
             {
                 if (ts1.isPressed() || ts2.isPressed())
                 {
-                    gear.backward(BACKWARD_DISTANCE);
-                    gear.right(RIGHT_TURN_DISTANCE);
+                    gear.backward(strecke);
+                    gear.right(grad90);
                     gear.forward();
                     counter++;
                 }
@@ -46,8 +48,8 @@ public class Drucksensor2
                 {
                     if (ts1.isPressed() || ts2.isPressed()) 
                     {
-                        gear.backward(BACKWARD_DISTANCE);
-                        gear.right(1400); // This could also be a constant
+                        gear.backward(strecke);
+                        gear.right(grad180); // This could also be a constant
                         gear.forward();
                     }
                 }
