@@ -30,7 +30,7 @@ public class Drucksensor2                                               //die Kl
         {
             if (counter == 0)                                           //if-Block, der ausgeführt wird, wenn der counter Wert gleich 0 ist
             {
-                if (ts1.isPressed() || ts2.isPressed())
+                if (ts1.isPressed() || ts2.isPressed())                 //ein if-Block, der ausgeführt wird wenn der Touch-Sensor 1 (ts1) oder wenn der Touch-Sensor 2 (ts2) ausgelöst wird
                 {
                     gear.backward(strecke);
                     gear.right(grad90);
