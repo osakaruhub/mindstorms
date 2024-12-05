@@ -1,6 +1,6 @@
-package Drucksensor;
+package Drucksensor;                                                //die Klassen "Drucksensor1", "Drucksensor2" liegen alle im Package "Drucksensor"
 
-import ch.aplu.ev3.*;
+import ch.aplu.ev3.*;                                               //importiert die Klassenbibliothek Ev3JLibA
 
 public class Drucksensor2
 {
