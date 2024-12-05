@@ -1,15 +1,14 @@
-package test;
+package Drucksensor;						//die Klassen "Drucksensor1", "Drucksensor2" liegen alle im Package "Drucksensor"
 
-import ch.aplu.ev3.*;
+import ch.aplu.ev3.*;						//importiert die Klassenbibliothek Ev3JLibA
 
-public class Drucksensor1 
+public class Drucksensor1 					//die Klasse "Drucksensor1" führt die erste Aufgabe von den Drucksensoren aus 
 {
-  int strecke = 1000;
-  int grad90  = 700;
+  int strecke = 1000;						//in den Integer "strecke" wird der Wert 1000 gespeichert
+  int grad90  = 700;						//in den Integer "grad90"  wird der Wert  700 gespeichert
 	
   public Drucksensor1()
   {
-
 	LegoRobot robot = new LegoRobot();
 	
 	Gear gear = new Gear();
@@ -54,8 +53,8 @@ public class Drucksensor1
 	robot.exit();
   }
 	
-	public static void main(String [] args)
-	{
-		new Drucksensor1();
-	}
+  public static void main(String [] args)
+  {
+	new Drucksensor1();
+  }
 }
