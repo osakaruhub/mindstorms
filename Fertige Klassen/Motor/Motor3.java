@@ -1,10 +1,10 @@
-package Motor;                              
+package Motor;                                               //die Klassen "Motor1", "Motor2", "Motor3", "Motor4" liegen alle im Package "Motor"         
 
-import ch.aplu.ev3.*;                         
+import ch.aplu.ev3.*;                                        //importiert die Klassenbibliothek Ev3JLibA     
 
-public class Motor3                           
+public class Motor3                                          //die Klasse "Motor3" führt die dritte Aufgabe von den Motoren aus                       
 {                    
-  double radius = 0.2;
+  double radius = 0.2;                                       //in dem Double "radius" wird der Wert 0,2 gespeichert
   double time   = 8000;
   
   public Motor3()                           
