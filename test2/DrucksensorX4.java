@@ -24,11 +24,11 @@ public class Drucksensor2                                               //die Kl
         int counter = 0;                                                //in den Integer "counter" wird der Wert 0 gespeichert
         
         
-        gear.forward();
+        gear.forward();                                                 //der Roboter bewegt sich für eine unbestimmte Zeit nach vorne. Methode forward() ohne Parameter ist nicht blockierend
 
-        while (!robot.isEscapeHit())
+        while (!robot.isEscapeHit())                                    //der Code innerhalb der while-Schleife wird solange ausgeführt, bis der Benutzer auf dem "EV3 Brick" die Escape-Taste drückt. wird die Taste nicht gedrückt, wird der Code ganz normal weiterlaufen, bis er sein Ende erreicht hat
         {
-            if (counter == 0)
+            if (counter == 0)                                           //if-Block, der ausgeführt wird, wenn der counter Wert gleich 0 ist
             {
                 if (ts1.isPressed() || ts2.isPressed())
                 {
@@ -58,7 +58,7 @@ public class Drucksensor2                                               //die Kl
             }
         }       
                 
-        robot.exit();
+        robot.exit();                                                                                    //beendet das Programm (regulär)
     }
 
     public static void main(String[] args)
