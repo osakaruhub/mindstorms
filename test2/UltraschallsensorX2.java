@@ -27,7 +27,7 @@ public class Ultraschallsensor2                                             //di
 
         while (!robot.isEscapeHit())                                        //der Code innerhalb der while-Schleife wird solange ausgeführt, bis der Benutzer auf dem "EV3 Brick" die Escape-Taste drückt. wird die Taste nicht gedrückt, wird der Code ganz normal weiterlaufen, bis er sein Ende erreicht hat
         {
-        	try 
+        	try                                                             //try-Block den man einbauen musss, um Thread.sleep() verwenden zu können
             {
         	    int distance = us.getDistance();
         	
