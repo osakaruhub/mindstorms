@@ -25,7 +25,7 @@ public class Ultraschallsensor2                                             //di
         
         gear.forward();                                                     //der Roboter bewegt sich für eine unbestimmte Zeit nach vorne. Methode forward() ohne Parameter ist nicht blockierend
 
-        while (!robot.isEscapeHit())
+        while (!robot.isEscapeHit())                                        //der Code innerhalb der while-Schleife wird solange ausgeführt, bis der Benutzer auf dem "EV3 Brick" die Escape-Taste drückt. wird die Taste nicht gedrückt, wird der Code ganz normal weiterlaufen, bis er sein Ende erreicht hat
         {
         	try 
             {
