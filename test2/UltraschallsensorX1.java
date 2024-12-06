@@ -31,32 +31,32 @@ public class Ultraschallsensor1 						//die Klasse "Ultraschallsensor1" führt d
 			if(distance <= 5 && counter % 2 == 0)			//ein if-Block, der ausgeführt wird wenn, die gemessene Distanz des Ultraschallsensor (us) zum nächsten Objakt kleiner oder gleich 5 Zentimeter beträgt und der Counter-Wert eine gerade Zahl ist (oder 0)
 			{
 			 gear.backward(strecke);				//der Lego-Roboter bewegt sich die vorgegebene Anzahl von Milisekunden nach hinten; bedeutet er fährt 1 Sekunde nach hinten
-			 gear.right(grad90);
+			 gear.right(grad90);					//der Lego-Roboter dreht sich 0,7 Sekunden nach rechts. somit wird eine 90 grad Drehung erreicht 
 			 gear.forward(strecke);					//der Lego-Roboter bewegt sich die vorgegebene Anzahl von Milisekunden nach vorne; bedeutet er fährt 1 Sekunde nach vorne
-			 gear.right(grad90);
-			 gear.forward(strecke);
-			 gear.forward();
-			 counter++;
+			 gear.right(grad90);					//der Lego-Roboter dreht sich um 90 grad nach rechts
+			 gear.forward(strecke);					//der Lego-Roboter fährt 1 Sekunde nach vorne
+			 gear.forward();					//der Roboter bewegt sich für eine unbestimmte Zeit nach vorne. Methode forward() ohne Parameter ist nicht blockierend
+			 counter++;						//der counter Wert wird um 1 erhöht
 			}
 		
-			if(distance <= 5 && counter % 2 == 1)
+			if(distance <= 5 && counter % 2 == 1)			//ein if-Block, der ausgeführt wird wenn, die gemessene Distanz des Ultraschallsensor (us) zum nächsten Objakt kleiner oder gleich 5 Zentimeter beträgt und der Counter-Wert eine gerade Zahl ist (oder 0)
 			{
-			 gear.backward(strecke);
-			 gear.left(grad90);
-			 gear.forward(strecke);
-			 gear.left(grad90);
-			 gear.forward(strecke);
-			 gear.forward();
-			 counter++;
+			 gear.backward(strecke);				//der Lego-Roboter bewegt sich die vorgegebene Anzahl von Milisekunden nach hinten; bedeutet er fährt 1 Sekunde nach hinten
+			 gear.left(grad90);					//der Lego-Roboter dreht sich 0,7 Sekunden nach links. somit wird eine 90 grad Drehung erreicht
+			 gear.forward(strecke);					//der Lego-Roboter bewegt sich die vorgegebene Anzahl von Milisekunden nach vorne; bedeutet er fährt 1 Sekunde nach vorne
+			 gear.left(grad90);					//der Lego-Roboter dreht sich um 90 grad nach links
+			 gear.forward(strecke);					//der Lego-Roboter fährt 1 Sekunde nach vorne
+			 gear.forward();					//der Roboter bewegt sich für eine unbestimmte Zeit nach vorne. Methode forward() ohne Parameter ist nicht blockierend
+			 counter++;						//der counter Wert wird um 1 erhöht
 			}
 		}	
-	robot.exit();
+	robot.exit();								//beendet das Programm
 	    //}	
 	}
 	
 	public static void main(String [] args)
 	{
-		new Ultraschallsensor1();
+		new Ultraschallsensor1();					//ruft den Konstruktor auf, in dem die ganzen Anweisungen sind
 	}
 
 }
