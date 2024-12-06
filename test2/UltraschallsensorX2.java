@@ -23,7 +23,7 @@ public class Ultraschallsensor2                                             //di
         int counter = 0;                                                    //in den Integer "counter" wird der Wert 0 gespeichert
 
         
-        gear.forward();
+        gear.forward();                                                     //der Roboter bewegt sich für eine unbestimmte Zeit nach vorne. Methode forward() ohne Parameter ist nicht blockierend
 
         while (!robot.isEscapeHit())
         {
