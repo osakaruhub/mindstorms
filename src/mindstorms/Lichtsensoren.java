@@ -6,9 +6,9 @@ package mindstorms;
 import ch.aplu.ev3.*;
 
 public class Lichtsensoren {
-    private final int DREHEN = 1250;
-    static Boolean stop = false;
-    final int LEVEL = 300;
+    private static final int DREHEN = 1250; // 180 Grad
+    private static final int LEVEL = 300;
+    private static Boolean stop = false;    // fuer BWLightListener
     LegoRobot robot;
     Gear gear;
     LightSensor ls;
@@ -21,33 +21,28 @@ public class Lichtsensoren {
         ls = new LightSensor();
         robot.addPart(ls);
         ls.activate(true);
-        circle();
+        // add method calls here
         robot.exit();
     }
 
     // 1.
     public void bw() {
-        ls.addLightListener(new bwLightListener(), LEVEL); // Im Quellcode wird der Listener gesetzt (this.lL = lL), wodurch der Name setLightListener() logischer ist
+        ls.addLightListener(new BWLightListener(), LEVEL); // Im Quellcode wird der Listener gesetzt (this.lL = lL), wodurch der Name setLightListener() logischer ist
         gear.forward();
-        while (!robot.isEscapeHit() || stop) {
-    	    robot.drawString(ls.getValue() + "", 1, 1); //debug
-        }
+        while (!robot.isEscapeHit() || stop);
         gear.stop();
     }
 
-    class bwLightListener implements LightListener {
-        private int count;
+    class BWLightListener implements LightListener {
+        private int count = 0;
 
         public void dark(SensorPort port, int level) {}
-        public void bright(SensorPort port, int level) { // stopt, dreht sich um und faehrt weiter, und stopt wenn es 5 mal gemacht hat
-            if (count >= 5) {
-                stop = true;
-            } else {
+        public void bright(SensorPort port, int level) { // stoppt, dreht sich um und faehrt weiter, und stopt wenn es 5 mal gemacht hat
                 gear.stop();
                 gear.left(DREHEN);
                 gear.forward();
                 count++;
-            }
+                stop = count >= 5;
         }
     }
 
@@ -63,7 +58,7 @@ public class Lichtsensoren {
 	    int count = 0;
         public void dark(SensorPort port, int level) {}
         public void bright(SensorPort port, int level) {
-    	    robot.playTone(600, 300); // indiziert ein Streifen^
+    	    robot.playTone(600, 300); // indiziert ein Streifen
     	    System.out.println(count + ""); // liest auch die Anzahl an Streifen
     	    robot.drawString(count++ + "", 1, 1);
             try {
@@ -76,20 +71,19 @@ public class Lichtsensoren {
 
     // 3.
     public void circle() {
-    	ls.addLightListener(new circleListener(), LEVEL);
+    	ls.addLightListener(new CircleListener(), LEVEL);
     	gear.forward();
-        while (!robot.isEscapeHit()) {
-        	robot.drawString(ls.getValue() +"", 1, 1);
-        };
+        while (!robot.isEscapeHit());
         gear.stop();
     }
 
-    class circleListener implements LightListener {
-        public void dark(SensorPort port, int level) { // neigt sich nach rechts
-        	gear.rightArcMilli(250);
+    // Wie in der Vorfuehrung, weiss ich nicht die richtigen Werte
+    class CircleListener implements LightListener {
+        public void bright(SensorPort port, int level) { // neigt sich nach rechts
+        	gear.LeftArcMilli(200);
         }
-        public void bright(SensorPort port, int level) { // neigt sich staerker nach rechts, um wieder auf der Bahn zu bleiben.
-        	gear.rightArcMilli(200);
+        public void dark(SensorPort port, int level) { // neigt sich staerker nach rechts, um wieder auf der Bahn zu bleiben.
+            gear.forward();
         }
     }
 
