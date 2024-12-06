@@ -1,4 +1,4 @@
-package Ultraschallsensor;							//die Klassen "Ultraschallsensor1", "Motor2", "Motor3", "Motor4" liegen alle im Package "Motor"
+package Ultraschallsensor;							//die Klassen "Ultraschallsensor1", "Ultraschallsensor2" liegen alle im Package "Ultraschallsensor"
 
 import ch.aplu.ev3.*;								//importiert die Klassenbibliothek Ev3JLibA
 
@@ -6,8 +6,7 @@ public class Ultraschallsensor1 						//die Klasse "Ultraschallsensor1" führt d
 {
 	public Ultraschallsensor1()
 	{
-
-	 LegoRobot robot = new LegoRobot();
+	 LegoRobot robot = new LegoRobot();					//deklariert und initialisiert ein neues LegoRobot Objekt mit dem Namen "robot"		
 	
 	 Gear gear = new Gear();
 	 robot.addPart(gear);
