@@ -29,7 +29,7 @@ public class Ultraschallsensor2                                             //di
         {
         	try                                                             //try-Block den man einbauen musss, um Thread.sleep() verwenden zu können
             {
-        	    int distance = us.getDistance();
+        	    int distance = us.getDistance();                            //die Methode getDistance() gibt die Entfernung zum nächsten Gegenstand in Zentimeter zurück und speichert sie Integer "distance" ab
         	
                 if (counter == 0)
                 {
