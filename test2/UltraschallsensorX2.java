@@ -33,17 +33,17 @@ public class Ultraschallsensor2                                             //di
         	
                 if (counter == 0)                                           //if-Block, der ausgeführt wird, wenn der counter Wert gleich 0 ist
                 {
-                    if (distance <= 5)
+                    if (distance <= 5)                                      //ein if-Block, der ausgeführt wird wenn, die gemessene Distanz des Ultraschallsensor (us) zum nächsten Objakt kleiner oder gleich 5 Zentimeter beträgt
                     {
-                        gear.backward(strecke);
-                        gear.right(grad90);
-                        Thread.sleep(schlafen);
-            		    gear.forward();
-                        counter++;
+                        gear.backward(strecke);                             //der Lego-Roboter bewegt sich die vorgegebene Anzahl von Milisekunden nach hinten; bedeutet er fährt 1 Sekunde nach hinten    
+                        gear.right(grad90);                                 //der Lego-Roboter dreht sich 0,7 Sekunden nach rechts. somit wird eine 90 grad Drehung erreicht 
+                        Thread.sleep(schlafen);                             //der Lego-Roboter stoppt für für den Wert von schlafen in Milisekunden; bedeutet er stoppt hier für 1 Sekunde
+            		    gear.forward();                                     //der Roboter bewegt sich für eine unbestimmte Zeit nach vorne. Methode forward() ohne Parameter ist nicht blockierend
+                        counter++;                                          //der counter Wert wird um 1 erhöht
                     }
                 }    
             
-                if (counter == 1) 
+                if (counter == 1)                                          //if-Block, der ausgeführt wird, wenn der counter Wert gleich 1 ist
                 {
                     Tools.startTimer();
                     long startTime = Tools.getTime(); // Store the start time
