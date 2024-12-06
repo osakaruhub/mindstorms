@@ -17,10 +17,10 @@ public class Ultraschallsensor2                                             //di
         int strecke = 1000;                                                 //in den Integer "strecke" wird der Wert 1000 gespeichert
         int grad180 = 1400;                                                 //in den Integer "grad180" wird der Wert 1400 gespeichert
         int grad90  = 700;                                                  //in den Integer "grad90"  wird der Wert  700 gespeichert
-        long timer = 5000; // 5 seconds
-        long schlafen = 1000;
+        long timer = 5000;                                                  //in den Long "timer" wird der Wert 5000 gespeichert
+        long schlafen = 1000;                                               //in den Long "schlafen" wird der Wert 1000 gespeichert
 
-        int counter = 0;
+        int counter = 0;                                                    //in den Integer "counter" wird der Wert 0 gespeichert
 
         
         gear.forward();
