@@ -12,11 +12,11 @@ public class Ultraschallsensor2                                             //di
         robot.addPart(gear);                                                //fügt dem Roboterobjekt "robot" das Fahtwerk "gear" zu
 
         UltrasonicSensor us = new UltrasonicSensor(SensorPort.S1);		    //am Sensorport 1 ist ein Ultrasonic-Sensor angeschlossen namens "us"
-    	robot.addPart(us);							            //der Ultrasonic-Sensor (us) wird zum "robot" hinzugefügt
+    	robot.addPart(us);							                        //der Ultrasonic-Sensor (us) wird zum "robot" hinzugefügt
 
-        int strecke = 1000;
-        int grad180 = 1400;
-        int grad90  = 700;
+        int strecke = 1000;                                                 //in den Integer "strecke" wird der Wert 1000 gespeichert
+        int grad180 = 1400;                                                 //in den Integer "grad180" wird der Wert 1400 gespeichert
+        int grad90  = 700;                                                  //in den Integer "grad90"  wird der Wert  700 gespeichert
         long timer = 5000; // 5 seconds
         long schlafen = 1000;
 
