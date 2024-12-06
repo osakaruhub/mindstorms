@@ -1,8 +1,8 @@
 package Ultraschallsensor;							//die Klassen "Ultraschallsensor1", "Motor2", "Motor3", "Motor4" liegen alle im Package "Motor"
 
-import ch.aplu.ev3.*;
+import ch.aplu.ev3.*;								//importiert die Klassenbibliothek Ev3JLibA
 
-public class Ultraschallsensor1 
+public class Ultraschallsensor1 						//die Klasse "Ultraschallsensor1" führt die erste Aufgabe von den Ultraschallsensoren aus 
 {
 	public Ultraschallsensor1()
 	{
