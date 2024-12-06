@@ -59,12 +59,12 @@ public class Ultraschallsensor2                                                 
                         }
                     }
 
-                    counter = 0; // Reset the counter after the time has elapsed
+                    counter = 0;                                                //der counter wird (nach Ablauf von 5 Sekunden) wieder auf 0 gesetzt
                 }
         	}
-        	catch(Exception e)
+        	catch(Exception e)                                                  //catch-Block zum dazugehörigen try-Block; wird im try-Block eine Exception gefunden, springt das Programm automatisch in den catch-Block
         	{
-        		throw new RunTimeException();
+        		throw new RunTimeException();                                   //wirft eine RunTimeException, die das Programm unterbricht/beendet
         	}
         }              
     robot.exit();
