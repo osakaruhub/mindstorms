@@ -28,9 +28,9 @@ public class Drucksensor1 						//die Klasse "Drucksensor1" führt die erste Auf
 	   {
 		if(ts.isPressed() && counter % 2 == 0)			//ein if-Block, der ausgeführt wird wenn der Drucksensor (ts) ausgelöst wird und der Counter-Wert eine gerade Zahl ist (oder 0)
 		{
-		 gear.backward(strecke);				//der Lego-Roboter bewegt sich die vorgegebene Anzahl von Milisekunden nach hinten; bedeutet er fährt 3 Sekunden nach hinten            
+		 gear.backward(strecke);				//der Lego-Roboter bewegt sich die vorgegebene Anzahl von Milisekunden nach hinten; bedeutet er fährt 1 Sekunde nach hinten            
 		 gear.right(grad90);					//der Lego-Roboter dreht sich 0,7 Sekunden nach rechts. somit wird eine 90 grad Drehung erreicht 
-		 gear.forward(strecke);					//der Lego-Roboter bewegt sich die vorgegebene Anzahl von Milisekunden nach vorne; bedeutet er fährt 3 Sekunden nach vorne
+		 gear.forward(strecke);					//der Lego-Roboter bewegt sich die vorgegebene Anzahl von Milisekunden nach vorne; bedeutet er fährt 1 Sekunde nach vorne
 		 gear.right(grad90);					//der Lego-Roboter dreht sich um 90 grad nach rechts
 		 gear.forward();					//der Roboter bewegt sich für eine unbestimmte Zeit nach vorne. Methode forward() ohne Parameter ist nicht blockierend
 		 counter++;						//der counter Wert wird um 1 erhöht
@@ -38,9 +38,9 @@ public class Drucksensor1 						//die Klasse "Drucksensor1" führt die erste Auf
 		
 		if(ts.isPressed() && counter % 2 == 1)			//ein if-Block, der ausgeführt wird wenn der Drucksensor (ts) ausgelöst wird und der Counter-Wert eine ungerade Zahl ist
 		{
-		 gear.backward(strecke);				//der Lego-Roboter bewegt sich die vorgegebene Anzahl von Milisekunden nach hinten; bedeutet er fährt 3 Sekunden nach hinten
+		 gear.backward(strecke);				//der Lego-Roboter bewegt sich die vorgegebene Anzahl von Milisekunden nach hinten; bedeutet er fährt 1 Sekunde nach hinten
 		 gear.left(grad90);					//der Lego-Roboter dreht sich 0,7 Sekunden nach links. somit wird eine 90 grad Drehung erreicht 
-		 gear.forward(strecke);					//der Lego-Roboter bewegt sich die vorgegebene Anzahl von Milisekunden nach vorne; bedeutet er fährt 3 Sekunden nach vorne
+		 gear.forward(strecke);					//der Lego-Roboter bewegt sich die vorgegebene Anzahl von Milisekunden nach vorne; bedeutet er fährt 1 Sekunde nach vorne
 		 gear.left(grad90);					//der Lego-Roboter dreht sich um 90 grad nach links
 		 gear.forward();					//der Roboter bewegt sich für eine unbestimmte Zeit nach vorne. Methode forward() ohne Parameter ist nicht blockierend
 		 counter++;						//der counter Wert wird um 1 erhöht
