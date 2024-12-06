@@ -18,66 +18,66 @@ public class DrucksensorX2
       
     gear.forward();
 
-   	while (!robot.isEscapeHit())
+        while (!robot.isEscapeHit())
+    {
+            try 
         {
-   	 try 
-     {
-     
-        	if(ts1.isPressed() || ts2.isPressed())//==0
-        	{
-        	
-        		Tools.startTimer();
-        		
-        		gear.backward(1000);
-                gear.right(700);
-                gear.forward();
-                Thread.sleep(500);
-                
-                /*counter++;
-                
+
+                if(ts1.isPressed() || ts2.isPressed())//==0
+            {
+
+                    Tools.startTimer();
+
+                    gear.backward(1000);
+                    gear.right(700);
+                    gear.forward();
+                    Thread.sleep(500);
+
+                    /*counter++;
+
                 if(counter == 1)
                 {
                 Tools.startTimer();
-                
+
                 if(ts1.isPressed() || ts2.isPressed())
                 {
-        	
-        		Tools.startTimer();
-        		
-        		gear.backward(1000);
+
+                Tools.startTimer();
+
+                gear.backward(1000);
                 gear.right(1400);
                 gear.forward();
                 }
-                
+
                 timer > 7000
-          
-                
+
+
                 if((ts1.isPressed() || ts2.isPressed()) && Tools.getTime() < 7000)
                 {
-                	gear.backward(1000);
+                    gear.backward(1000);
                     gear.right(1400);
                     gear.forward();
                 }
                 else
                 {
-                	
+
                 }
-        		*/
-        	
-    
-    	
-    	
-        }
-     }
-        	catch(Exception e)
-        	{
-        		
-        	}
-    
-    
-      
-      
-    /*if ((ts1.isPressed() || ts2.isPressed()) && counter % 2 == 0)
+                */
+
+
+
+
+                }
+            }
+            catch(Exception e)
+        {
+
+            }
+
+
+
+
+            /*if ((ts1.isPressed() || ts2.isPressed()) && counter % 2 == 0)
       {
       Tools.startTimer();
       gear.backward(1000);
@@ -91,7 +91,7 @@ public class DrucksensorX2
           gear.forward();
         }
       }
-      
+
       if ((ts1.isPressed() || ts2.isPressed()) && counter % 2 == 1)
       { 
         Tools.startTimer();
@@ -106,12 +106,12 @@ public class DrucksensorX2
           gear.forward();
         }
       }
-      
+
 
       if (ts1.isPressed() || ts2.isPressed())
       { 
         Tools.startTimer();
-        
+
         if(counter == 0)
         {
           gear.backward(1000);
@@ -124,7 +124,7 @@ public class DrucksensorX2
           gear.right(800);
           gear.forward();
         }
-        
+
         if (Tools.getTime() < 3000)
         {
           gear.backward(1000);
@@ -132,16 +132,16 @@ public class DrucksensorX2
           gear.forward();
         }
       }
-      
+
       counter = 1 - counter;
     }*/
         }
-  robot.exit();
-  
-  }
+        robot.exit();
 
-  public static void main(String[] args)
-  {
-    new DrucksensorX2();
-  }
+    }
+
+    public static void main(String[] args)
+{
+        new DrucksensorX2();
+    }
 }

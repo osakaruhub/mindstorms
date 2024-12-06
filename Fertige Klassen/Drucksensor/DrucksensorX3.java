@@ -31,7 +31,6 @@ public class DrucksensorX3
    					gear.backward(1000);
    					gear.right(700);
    					gear.forward();
-                
    					counter++;
    				}
    			}    
@@ -47,7 +46,7 @@ public class DrucksensorX3
    		        if (ts1.isPressed() || ts2.isPressed()) 
    		        {
    		        	gear.backward(1000);
-                	gear.right(1400);
+                    gear.right(1400);
                 	gear.forward();
    		        }
    		    }
