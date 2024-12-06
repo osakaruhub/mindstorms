@@ -31,7 +31,7 @@ public class Ultraschallsensor2                                             //di
             {
         	    int distance = us.getDistance();                            //die Methode getDistance() gibt die Entfernung zum nächsten Gegenstand in Zentimeter zurück und speichert sie Integer "distance" ab
         	
-                if (counter == 0)
+                if (counter == 0)                                           //if-Block, der ausgeführt wird, wenn der counter Wert gleich 0 ist
                 {
                     if (distance <= 5)
                     {
