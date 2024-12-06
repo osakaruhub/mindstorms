@@ -52,10 +52,10 @@ public class Ultraschallsensor2                                                 
                     {
                         if (distance <= 5)                                      //ein if-Block, der ausgeführt wird wenn, die gemessene Distanz des Ultraschallsensor (us) zum nächsten Objakt kleiner oder gleich 5 Zentimeter beträgt
                         {
-                            gear.backward(strecke);                             //der Lego-Roboter bewegt sich die vorgegebene Anzahl von Milisekunden nach hinten; bedeutet er fährt 1 Sekunde nach hinten    
-                        gear.right(grad180);                                    //der Lego-Roboter dreht sich 1,4 Sekunden nach rechts. somit wird eine 1800 grad Drehung erreicht 
-                        Thread.sleep(schlafen);                                 //der Lego-Roboter stoppt für für den Wert von schlafen in Milisekunden; bedeutet er stoppt hier für 1 Sekunde
-            		    gear.forward();                                         //der Roboter bewegt sich für eine unbestimmte Zeit nach vorne. Methode forward() ohne Parameter ist nicht blockierend
+                         gear.backward(strecke);                             //der Lego-Roboter bewegt sich die vorgegebene Anzahl von Milisekunden nach hinten; bedeutet er fährt 1 Sekunde nach hinten    
+                         gear.right(grad180);                                    //der Lego-Roboter dreht sich 1,4 Sekunden nach rechts. somit wird eine 180 grad Drehung erreicht 
+                         Thread.sleep(schlafen);                                 //der Lego-Roboter stoppt für für den Wert von schlafen in Milisekunden; bedeutet er stoppt hier für 1 Sekunde
+            		     gear.forward();                                         //der Roboter bewegt sich für eine unbestimmte Zeit nach vorne. Methode forward() ohne Parameter ist nicht blockierend
                         }
                     }
 
@@ -67,11 +67,11 @@ public class Ultraschallsensor2                                                 
         		throw new RunTimeException();                                   //wirft eine RunTimeException, die das Programm unterbricht/beendet
         	}
         }              
-    robot.exit();
+    robot.exit();                                                               //beendet das Programm (regulär)
  }
 
  public static void main(String[] args)
  {
-    new Ultraschallsensor2();
+    new Ultraschallsensor2();                                                   //ruft den Konstruktor auf, in dem die ganzen Anweisungen sind
  }
 }
