@@ -11,13 +11,14 @@ public class Ultraschallsensor2                                             //di
         Gear gear = new Gear();                                             //erzeugt ein Fahrwerk namens "gear" mit Motoren an den Anschlüssen A und B 
         robot.addPart(gear);                                                //fügt dem Roboterobjekt "robot" das Fahtwerk "gear" zu
 
-        UltrasonicSensor us = new UltrasonicSensor(SensorPort.S1);
-        robot.addPart(us);
+        UltrasonicSensor us = new UltrasonicSensor(SensorPort.S1);		    //am Sensorport 1 ist ein Ultrasonic-Sensor angeschlossen namens "us"
+    	robot.addPart(us);							                        //der Ultrasonic-Sensor (us) wird zum "robot" hinzugefügt
 
-        int BACKWARD_DISTANCE = 1000;
-        int RIGHT_TURN_DISTANCE = 700;
-        int FORWARD_DISTANCE = 1000;
-        long TIMER_DURATION = 5000; // 5 seconds
+        int strecke = 1000;
+        int grad180 = 1400;
+        int grad90  = 700;
+        long timer = 5000; // 5 seconds
+        long schlafen = 1000;
 
         int counter = 0;
 
@@ -34,9 +35,9 @@ public class Ultraschallsensor2                                             //di
                 {
                     if (distance <= 5)
                     {
-                        gear.backward(BACKWARD_DISTANCE);
-                        gear.right(RIGHT_TURN_DISTANCE);
-                        Thread.sleep(1000);
+                        gear.backward(strecke);
+                        gear.right(grad90);
+                        Thread.sleep(schlafen);
             		    gear.forward();
                         counter++;
                     }
@@ -47,13 +48,13 @@ public class Ultraschallsensor2                                             //di
                     Tools.startTimer();
                     long startTime = Tools.getTime(); // Store the start time
 
-                    while (Tools.getTime() - startTime < TIMER_DURATION) // Check the elapsed time
+                    while (Tools.getTime() - startTime < timer) // Check the elapsed time
                     {
                         if (distance <= 5) 
                         {
-                            gear.backward(BACKWARD_DISTANCE);
-                            gear.right(1400); // This could also be a constant
-                            Thread.sleep(1000);
+                            gear.backward(strecke);
+                            gear.right(grad180); // This could also be a constant
+                            Thread.sleep(schlafen);
                 		    gear.forward();
                         }
                     }
