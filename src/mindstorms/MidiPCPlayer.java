@@ -1,19 +1,26 @@
-import javax.sound.midi.*;
-import javax.sound.sampled.*;
-import java.io.File;
+package mindstorms;
 
-public class MidiEV3 {
+import javax.sound.midi.*;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class MidiPCPlayer {
 
     private static float BPM = 120; // Beats per minute
     private static int PPQ = 480; // Pulses per quarter note (common value)
-    private static final float SAMPLE_RATE = 44100; // Sample rate in Hz
+    private static File f;
+    private static BufferedWriter writer;
+    private static final String seperator = System.lineSeparator();
 
     public static void main(String[] args) {
-        if (args.length == 0) {
-            System.err.println("no argument given");
-            System.exit(1);
-        }
-        try {
+    	extractSong();
+    }
+    
+    public static void extractSong() {
+    	try {
             Sequencer sequencer = MidiSystem.getSequencer();
             if (sequencer == null) {
                 System.out.println("No sequencer available.");
@@ -21,24 +28,29 @@ public class MidiEV3 {
             }
 
             sequencer.open();
-            Sequence sequence = MidiSystem.getSequence(new File(args[0]));
+            Sequence sequence = MidiSystem.getSequence(new File("midi/elise.mid"));
             //BPM = getBPM(sequence);
             System.out.println(BPM);
             PPQ = sequence.getResolution();
             System.out.println(PPQ);
             sequencer.setSequence(sequence);
             sequencer.start();
+            
+        	f = new File("elise.aev");
+        	writer = new BufferedWriter(new FileWriter(f));
 
             Track[] tracks = sequence.getTracks();
             for (Track track : tracks) {
                 extractNotes(track);
             }
-
+            writer.flush();
+            writer.close();
             sequencer.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
 public static float getBPM(Sequence sequence) {
         for (Track track : sequence.getTracks()) {
             for (int i = 0; i < track.size(); i++) {
@@ -89,6 +101,13 @@ public static float getBPM(Sequence sequence) {
                         double durationInSeconds = ticksToSeconds(noteDurationTicks);
                         System.out.printf("Note OFF: %d at tick %d, Frequency: %.2f Hz, Duration: %.3f seconds%n",
                                           lastNote, event.getTick(), frequency, durationInSeconds);
+                        try {
+							writer.append((frequency + " " + durationInSeconds));
+							writer.newLine();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
                         // Play the frequency
                         //robot.playtune(frequency, duration);
                         lastNote = -1;  // Reset lastNote after processing
@@ -99,12 +118,12 @@ public static float getBPM(Sequence sequence) {
     }
 
     private static double midiToFrequency(int midiNote) {
-        return 440.0 * Math.pow(2, (midiNote - 69) / 12.0);
+        return (int) 440.0 * Math.pow(2, (midiNote - 69) / 12.0);
     }
 
     private static double ticksToSeconds(long ticks) {
         double secondsPerBeat = 60.0 / BPM;
-        return ticks * secondsPerBeat / PPQ;
+        return (int) ticks * secondsPerBeat / PPQ;
     }
 
 }
