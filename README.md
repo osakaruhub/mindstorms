@@ -2,8 +2,11 @@
 
 Milestone:
 - [x] Motoren
-- [] Lichtsensoren (followLine is a b)
+- [x] Lichtsensoren
 - [x] Drucksensoren
 - [x] Ultraschallsensoren
-- [] Gyrosensoren
-- [] Komplexe Aufgabe
+- [x] Gyrosensoren
+- [x] Komplexe Aufgabe
+
+### Kreative Aufgabe
+Toene abspielen per midi dateien (hoffentlich, k.a wie ich die Datei zugreife)
